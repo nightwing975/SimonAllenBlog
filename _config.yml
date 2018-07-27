@@ -3,12 +3,18 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: SimonAllen's Blog
-subtitle:
-description:
-keywords:
+title: 前端百工
+subtitle: 回憶過去、展望未來
+description: 為信仰的事物奮鬥不懈
+keywords: 
+  - SimonAllen
+  - 前端
+  - 前端百工
+  - 前端工程師
+  - 技術部落格
+  - 網頁開發
 author: Simon Allen
-language:
+language: zh-tw
 timezone:
 
 # URL
@@ -73,7 +79,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
