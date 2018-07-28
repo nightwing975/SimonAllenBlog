@@ -22,7 +22,7 @@ $ hexo server
 More info: [Server](https://hexo.io/docs/server.html)
 
 ### Generate static files
-
+<!-- more -->
 ``` bash
 $ hexo generate
 ```
