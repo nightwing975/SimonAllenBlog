@@ -1,6 +1,7 @@
 ---
 title: 克服JS奇怪的部分：Day03 執行環境:創造與提升
 date: 2018-07-28 16:28:38
+categories: 2018 IT鐵人賽
 tags:
  - IT鐵人賽
  - JavaScript
@@ -8,7 +9,9 @@ tags:
 ---
 ![](https://2.bp.blogspot.com/-vuFXuz8wvrM/W1waoPQRDFI/AAAAAAAAIak/KE7E9Zpz3q0IskEuEsIOCPK0WjJUfj_nACLcBGAs/s1600/2018ITMANJS03.png)
 <!-- more -->
-> 此為筆者 2018IT鐵人賽 筆記備份：https://ithelp.ithome.com.tw/articles/10190700
+> 此為筆者 2018 IT鐵人賽 筆記備份：https://ithelp.ithome.com.tw/articles/10190700
+
+---
 
 JavaScript在電腦上要執行時，會經過創造階段，這會對我們的程式碼造成什麼影響?
 來看看以下程式碼：
@@ -113,7 +116,10 @@ boy = function() {
 　
 當然這不代表我們寫在編輯器或IDE上的JS程式被竄寫成這樣，而是電腦執行JS的順序變成這樣，這種乍看變數與函式被拉到作用域最前面的現象稱為**Hoisting**
 這裡也可以參考[MDN](https://developer.mozilla.org/zh-TW/docs/Glossary/Hoisting)與[W3C](https://www.w3schools.com/js/js_hoisting.asp)
-
+　
+　
+　
+　
 ## 小結
 今天複習了執行環境的創造與Hoisting，Hoisting是JS奇妙的特性之一，也是初級前端工程師面試常考的題目之一，實際開發時最好注意宣告變數與定義函式的部分，可以降低雷點的發生。 
 　

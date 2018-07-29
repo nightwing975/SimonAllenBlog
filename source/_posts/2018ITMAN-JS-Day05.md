@@ -1,6 +1,7 @@
 ---
 title: 克服JS奇怪的部分：Day05 變數與函式環境、外部參照
 date: 2018-07-28 16:41:00
+categories: 2018 IT鐵人賽
 tags:
  - IT鐵人賽
  - JavaScript
@@ -8,7 +9,9 @@ tags:
 ---
 ![](https://3.bp.blogspot.com/-2i4JtO_DU_Q/W1wapAcFmXI/AAAAAAAAIaw/kaZqut-L1MAiHHQLvZ8zpxAkcFv4L-1XACLcBGAs/s1600/2018ITMANJS05.png)
 <!-- more -->
-> 此為筆者 2018IT鐵人賽 筆記備份：https://ithelp.ithome.com.tw/articles/10190998
+> 此為筆者 2018 IT鐵人賽 筆記備份：https://ithelp.ithome.com.tw/articles/10190998
+
+---
 
 執行JavaScript時，接收到翻譯的電腦會先創造一個全域執行環境。當程式呼叫函式，就會在全域環境中創造該函式的(區域)執行環境。而每個執行環境不論全域或區域，都有屬於自己的**變數作用域**存在。
 
@@ -116,7 +119,8 @@ b();
 還是有的!那就是使用 **ES6**新增的 **let**宣告!
 let具有區塊範圍(block scoping)特性，用let宣告的相同變數名稱，在全域、區域、不同執行環境彼此互不影響。
 　
-
+　
+　
 ## 小結
 今天我們知道全域執行環境就有全域變數、區域執行環境就有區域變數，並且知道當區域內找不到變數時會向外查找，向外查找的外部環境是指 **外部定義的環境**，不能直接認定就是全域環境與呼叫的環境。
 　

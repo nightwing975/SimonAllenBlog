@@ -1,15 +1,17 @@
 ---
 title: 克服JS奇怪的部分：Day01 前言
 date: 2018-07-28 13:04:42
+categories: 2018 IT鐵人賽
 tags:
  - IT鐵人賽
  - JavaScript
  - 學習筆記
 ---
-
 ![](https://2.bp.blogspot.com/-j3erwwWTLnY/W1waoCk3N8I/AAAAAAAAIag/DK5oMbt43gAExd2AzICzB2_A7l73wyoPACLcBGAs/s1600/2018ITMANJS01.png)
 <!-- more -->
-> 此為筆者 2018IT鐵人賽 筆記備份：https://ithelp.ithome.com.tw/articles/10190634
+> 此為筆者 2018 IT鐵人賽 筆記備份：https://ithelp.ithome.com.tw/articles/10190634
+
+---
 
 > JavaScript，一種高階程式語言，通過解釋執行，是一門動態型別，物件導向（基於原型）的直譯語言。它經由ECMA（歐洲電腦製造商協會）通過ECMAScript實現語言的標準化。它被世界上的絕大多數網站所使用，也被世界主流瀏覽器（Chrome、IE、FireFox、Safari、Opera）支援。
 *//引述自[維基百科](https://zh.wikipedia.org/zh-tw/JavaScript)*

@@ -1,6 +1,7 @@
 ---
 title: 克服JS奇怪的部分：Day04 undefined與not defined
 date: 2018-07-28 16:35:25
+categories: 2018 IT鐵人賽
 tags:
  - IT鐵人賽
  - JavaScript
@@ -8,7 +9,9 @@ tags:
 ---
 ![](https://4.bp.blogspot.com/-ujC_t_jn8bM/W1waoo-OThI/AAAAAAAAIao/8upC6aL0wQITKLJopMwLig2Eak-ctW7PgCLcBGAs/s1600/2018ITMANJS04.png)
 <!-- more -->
-> 此為筆者 2018IT鐵人賽 筆記備份：https://ithelp.ithome.com.tw/articles/10190904
+> 此為筆者 2018 IT鐵人賽 筆記備份：https://ithelp.ithome.com.tw/articles/10190904
+
+---
 
 昨天的筆記出現`undefined`與`not defined`，今天我們來看看兩者的差異。
 

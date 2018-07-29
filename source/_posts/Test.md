@@ -2,8 +2,6 @@
 title: Test
 date: 2018-07-28 00:12:59
 tag: 
-
-categories: Testing
 ---
 # 測試
 ### 廢文一篇

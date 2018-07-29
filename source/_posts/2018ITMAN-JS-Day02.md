@@ -1,6 +1,7 @@
 ---
 title: 克服JS奇怪的部分：Day02 幾個名詞小觀念
 date: 2018-07-28 16:14:35
+categories: 2018 IT鐵人賽
 tags:
  - IT鐵人賽
  - JavaScript
@@ -8,8 +9,9 @@ tags:
 ---
 ![](https://4.bp.blogspot.com/-tQQ8tog2G-I/W1wan49c2CI/AAAAAAAAIac/6PI_O8WGQQwV89sv8pRZjhakhw-dg1KYwCLcBGAs/s1600/2018ITMANJS02.png)
 <!-- more -->
-> 此為筆者 2018IT鐵人賽 筆記備份：https://ithelp.ithome.com.tw/articles/10190637
+> 此為筆者 2018 IT鐵人賽 筆記備份：https://ithelp.ithome.com.tw/articles/10190637
 
+---
 
 今天的筆記比較偏觀念性質，畢竟是[克服JS的奇怪部分](https://www.udemy.com/javascriptjs/)這堂課開頭的部分，但對我這個非資訊本科的人來說也很受用了。
 
@@ -134,8 +136,10 @@ gender是名稱，'男'是gender的值；color是名稱，'blue'是color的值�
 
 我在公司上班，公司對於我就是全域環境。
 我可以自由的使用茶水間的飲水機，飲水機對我來說就是全域物件，公共都可以使用，不只我可以用，別的部門也可以用。以此概念來發想，即便函式寫得再複雜，一層包一層，在裏頭也是可以取用全域的變數與物件的。
-
-
+　
+　
+　
+　
 ## 小結
 今天認識、複習到了幾個觀念與名詞(慘了好像都在打中文字比較多....)
 * 語法解析器
