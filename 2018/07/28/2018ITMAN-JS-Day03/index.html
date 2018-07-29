@@ -88,7 +88,7 @@
 <meta property="og:image" content="https://i.imgur.com/HuThyMY.png">
 <meta property="og:image" content="https://i.imgur.com/t1ehlSQ.png">
 <meta property="og:image" content="https://i.imgur.com/bZgLtLK.png">
-<meta property="og:updated_time" content="2018-07-29T03:50:33.293Z">
+<meta property="og:updated_time" content="2018-07-29T04:32:41.848Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="克服JS奇怪的部分：Day03 執行環境:創造與提升">
 <meta name="twitter:image" content="https://2.bp.blogspot.com/-vuFXuz8wvrM/W1waoPQRDFI/AAAAAAAAIak/KE7E9Zpz3q0IskEuEsIOCPK0WjJUfj_nACLcBGAs/s1600/2018ITMANJS03.png">
@@ -313,6 +313,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/simonallenblog/categories/2018-IT鐵人賽/" itemprop="url" rel="index">
+                    <span itemprop="name">2018 IT鐵人賽</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -342,7 +364,7 @@
       
         <p><img src="https://2.bp.blogspot.com/-vuFXuz8wvrM/W1waoPQRDFI/AAAAAAAAIak/KE7E9Zpz3q0IskEuEsIOCPK0WjJUfj_nACLcBGAs/s1600/2018ITMANJS03.png" alt=""><br><a id="more"></a></p>
 <blockquote>
-<p>此為筆者 2018IT鐵人賽 筆記備份：<a href="https://ithelp.ithome.com.tw/articles/10190700" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10190700</a></p>
+<p>此為筆者 2018 IT鐵人賽 筆記備份：<a href="https://ithelp.ithome.com.tw/articles/10190700" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10190700</a></p>
 </blockquote>
 <hr>
 <p>JavaScript在電腦上要執行時，會經過創造階段，這會對我們的程式碼造成什麼影響?<br>來看看以下程式碼：</p>
@@ -364,7 +386,11 @@
 <p>var boy先被提升到最上面(創造變數boy並設定進記憶體)<br>接著呼叫執行boy函式<br>給變數boy賦值(指向)函式</p>
 <p>呼叫執行boy函式時報錯，是因為變數boy這個時候<strong>根本沒有被賦值</strong>，何況是指向函式呼叫呢？所以自然報錯<code>boy is not a function</code>，可以想像成是這樣：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> boy</span><br><span class="line">boy();</span><br><span class="line">boy = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="string">'Yoo!'</span>;</span><br><span class="line">	<span class="built_in">console</span>.log(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>結果會是一樣的<br>　<br>　<br>當然這不代表我們寫在編輯器或IDE上的JS程式被竄寫成這樣，而是電腦執行JS的順序變成這樣，這種乍看變數與函式被拉到作用域最前面的現象稱為<strong>Hoisting</strong><br>這裡也可以參考<a href="https://developer.mozilla.org/zh-TW/docs/Glossary/Hoisting" target="_blank" rel="noopener">MDN</a>與<a href="https://www.w3schools.com/js/js_hoisting.asp" target="_blank" rel="noopener">W3C</a></p>
+<p>結果會是一樣的<br>　<br>　<br>當然這不代表我們寫在編輯器或IDE上的JS程式被竄寫成這樣，而是電腦執行JS的順序變成這樣，這種乍看變數與函式被拉到作用域最前面的現象稱為<strong>Hoisting</strong><br>這裡也可以參考<a href="https://developer.mozilla.org/zh-TW/docs/Glossary/Hoisting" target="_blank" rel="noopener">MDN</a>與<a href="https://www.w3schools.com/js/js_hoisting.asp" target="_blank" rel="noopener">W3C</a>
+　
+　
+　
+　</p>
 <h2 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h2><p>今天複習了執行環境的創造與Hoisting，Hoisting是JS奇妙的特性之一，也是初級前端工程師面試常考的題目之一，實際開發時最好注意宣告變數與定義函式的部分，可以降低雷點的發生。<br>　<br>今天的筆記內容可以參照Udemy課程：<a href="https://www.udemy.com/javascriptjs/" target="_blank" rel="noopener">JavaScript 全攻略：克服JS 的奇怪部分</a>2-10</p>
 
       
