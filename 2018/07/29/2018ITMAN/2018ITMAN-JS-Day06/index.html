@@ -79,16 +79,16 @@
 
 <meta name="keywords" content="IT鐵人賽,JavaScript,學習筆記">
 <meta property="og:type" content="article">
-<meta property="og:title" content="克服JS奇怪的部分：Day07 型別與運算子">
-<meta property="og:url" content="https://nightwing975.github.io/2018/07/29/2018ITMAN-JS-Day07/index.html">
+<meta property="og:title" content="克服JS奇怪的部分：Day06 JS是同步還是非同步?">
+<meta property="og:url" content="https://nightwing975.github.io/2018/07/29/2018ITMAN/2018ITMAN-JS-Day06/index.html">
 <meta property="og:site_name" content="前端百工">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:image" content="https://3.bp.blogspot.com/-eHv7nqsLDzs/W1waps7FnrI/AAAAAAAAIa0/crNGnjVLhBcABqcPoMKxrzyY4kyuVdu-ACLcBGAs/s1600/2018ITMANJS07.png">
-<meta property="og:image" content="https://i.imgur.com/9iAQ04u.png">
-<meta property="og:updated_time" content="2018-07-29T04:32:36.780Z">
+<meta property="og:image" content="https://2.bp.blogspot.com/-JXDRY0NYcys/W1waoy9p6wI/AAAAAAAAIas/nVx-9niwq-Aan0i37T7KWV02envXOhMnACLcBGAs/s1600/2018ITMANJS06.png">
+<meta property="og:image" content="https://i.imgur.com/F7GJMAF.png">
+<meta property="og:updated_time" content="2018-07-29T04:38:22.674Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="克服JS奇怪的部分：Day07 型別與運算子">
-<meta name="twitter:image" content="https://3.bp.blogspot.com/-eHv7nqsLDzs/W1waps7FnrI/AAAAAAAAIa0/crNGnjVLhBcABqcPoMKxrzyY4kyuVdu-ACLcBGAs/s1600/2018ITMANJS07.png">
+<meta name="twitter:title" content="克服JS奇怪的部分：Day06 JS是同步還是非同步?">
+<meta name="twitter:image" content="https://2.bp.blogspot.com/-JXDRY0NYcys/W1waoy9p6wI/AAAAAAAAIas/nVx-9niwq-Aan0i37T7KWV02envXOhMnACLcBGAs/s1600/2018ITMANJS06.png">
 
 
 
@@ -118,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="https://nightwing975.github.io/2018/07/29/2018ITMAN-JS-Day07/"/>
+  <link rel="canonical" href="https://nightwing975.github.io/2018/07/29/2018ITMAN/2018ITMAN-JS-Day06/"/>
 
 
 
 
 
-  <title>克服JS奇怪的部分：Day07 型別與運算子 | 前端百工</title>
+  <title>克服JS奇怪的部分：Day06 JS是同步還是非同步? | 前端百工</title>
   
 
 
@@ -270,7 +270,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://nightwing975.github.io/simonallenblog/2018/07/29/2018ITMAN-JS-Day07/">
+    <link itemprop="mainEntityOfPage" href="https://nightwing975.github.io/simonallenblog/2018/07/29/2018ITMAN/2018ITMAN-JS-Day06/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Simon Allen">
@@ -287,7 +287,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">克服JS奇怪的部分：Day07 型別與運算子</h1>
+          <h1 class="post-title" itemprop="name headline">克服JS奇怪的部分：Day06 JS是同步還是非同步?</h1>
         
 
         <div class="post-meta">
@@ -299,7 +299,7 @@
               
                 <span class="post-meta-item-text">發表於</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2018-07-29T11:52:06+08:00">
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2018-07-29T11:44:04+08:00">
                 2018-07-29
               </time>
             
@@ -359,32 +359,38 @@
       
 
       
-        <p><img src="https://3.bp.blogspot.com/-eHv7nqsLDzs/W1waps7FnrI/AAAAAAAAIa0/crNGnjVLhBcABqcPoMKxrzyY4kyuVdu-ACLcBGAs/s1600/2018ITMANJS07.png" alt=""><br><a id="more"></a></p>
+        <p><img src="https://2.bp.blogspot.com/-JXDRY0NYcys/W1waoy9p6wI/AAAAAAAAIas/nVx-9niwq-Aan0i37T7KWV02envXOhMnACLcBGAs/s1600/2018ITMANJS06.png" alt=""><br><a id="more"></a></p>
 <blockquote>
-<p>此為筆者 2018 IT鐵人賽 筆記備份：<a href="https://ithelp.ithome.com.tw/articles/10191195" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10191195</a></p>
+<p>此為筆者 2018 IT鐵人賽 筆記備份：<a href="https://ithelp.ithome.com.tw/articles/10191094" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10191094</a></p>
 </blockquote>
 <hr>
-<p>今天開始，課程影片進入第三章節囉！</p>
-<p>JavaScript是動態型別<code>Dynamic Typing</code>語言，相較於 <strong>C#</strong>、<strong>JAVA</strong>之類的靜態型別語言，JS的變數不用在編輯時特意宣告型別(例如布林值、字串、數值..等等)，在執行時它就會自動判別。</p>
-<p>而說起型別，JS有6種純值<code>Primitive Types</code>，(又稱原始型別、基本型別)，「純值」是什麼意思呢？<br>純值是指一種資料的型別(型態)，換句話說，純值(基本型別)不是物件，因為物件就是名稱/值配對的組合物，為避免與口語上的’值’搞混，下面純值改稱呼原始型別或基本型別。</p>
-<p>這6種基本型別分別是:</p>
-<h2 id="undefined"><a href="#undefined" class="headerlink" title="undefined"></a>undefined</h2><p>表示未定義，是JS給所有變數的<strong>初始值</strong>，剛宣告的變數在我們賦值之前，其值是 undefined，所以開發者最好不要賦值undefined給變數。</p>
-<h2 id="null"><a href="#null" class="headerlink" title="null"></a>null</h2><p>表示空、不存在，開發者在宣告變數並要先表示這個變數沒有值時，可以賦值null，不要手動賦值為 undefined。</p>
-<p>另外，JS的null有一點特別的地方，當我們使用typeof(null)來檢查時，居然會回傳 <strong>object</strong>。</p>
-<p><img src="https://i.imgur.com/9iAQ04u.png" alt=""></p>
-<p>欸~上面不是才說<code>Primitive Types</code>不是物件嗎？</p>
-<p>null確實是<code>Primitive Types</code>，而非物件型別，畢竟物件的特色就是可以自由增加屬性，而null既不是名稱/值的組合，也沒辦法讓開發者自行修改其屬性，<strong>它確實是Primitive Types原始型別沒錯</strong>。</p>
-<p>那為何使用<code>typeof()</code>檢查null會回傳object？<br>原來，這個BUG是JS的歷史包袱之一，這個設計可以追究到JS被創造出來時候，具體典故可以參考阮一峰大的文章：<a href="http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html" target="_blank" rel="noopener">undefined與null的區別</a>裡的說明。</p>
-<h2 id="boolean"><a href="#boolean" class="headerlink" title="boolean"></a>boolean</h2><p>表示true或false其中一個，意即是/否、對/錯、成立/不成立。</p>
-<h2 id="number"><a href="#number" class="headerlink" title="number"></a>number</h2><p>表示數字，JS的數字型別只有number，不像其他程式數字還有分整數與其他特定數值型態，另外JS的number是浮點數，表示(實際上)有小數點跟在後面。</p>
-<h2 id="string"><a href="#string" class="headerlink" title="string"></a>string</h2><p>表示字串，由字符組成，可以用單引號或雙引號來表示。</p>
-<h2 id="symbol"><a href="#symbol" class="headerlink" title="symbol"></a>symbol</h2><p>表示符號，是ES6新增的型別，可以賦予變數獨特性、獨一性。</p>
-<p>了解何謂<code>Primitive Types</code>後，最後我們來快速看看運算子<code>Operator</code></p>
-<p>在JS中有不少運算子種類：算術運算子、賦值運算子、比較運算子、邏輯運算子…等等很多種。<br>我們最熟悉的就是算術運算子啦，<code>+</code>、<code>-</code>、<code>*</code>、<code>/</code>(加、減、乘、除)，至於JS怎麼知道，當我們輸入<code>+</code>這個符號就等於相加呢？<br>可以把運算子想像成是<strong>函式</strong>的一種，這些符號會將前後兩個參數傳入對應的JS內建的函式中，進行個別的運算並回傳。
+<p>今天來看看JS，非同步背後的原理，在課程影片中提到：</p>
+<blockquote>
+<p>JavaScript是一個 <strong>單執行緒</strong>、<strong>同步</strong>的程式，它逐行執行程式碼，並不會非同步的執行程式。</p>
+</blockquote>
+<p>等等，同步?<br>JS的特色之一不就是 <strong>非同步</strong>嗎?<br>繼續看下去：</p>
+<p>撇開node.js先不說，JS在瀏覽器執行時依賴引擎來驅動，而瀏覽器不是只有JavaScript引擎的存在，還有其他引擎在處理瀏覽器的其他狀態、程式。有可以呈現東西到瀏覽器畫面上的渲染引擎(Rendering Engine)，也有其他專門處理http請求的東西存在。</p>
+<p>JS引擎可以和瀏覽器的其他引擎、處理器互動，這個互動行為是非同步的，但JS引擎 <strong>自己</strong>在運作JavaScript是同步的。如果有非同步的操作，那會發生什麼事呢?</p>
+<p>JS引擎內的等待列稱為事件佇列<code>Event Queue</code>，如果有事件發生，如滑鼠點擊事件，JS引擎會先將事件放在事件佇列<code>Event Queue</code>，當執行環境的程式都執行完成後，JS才會開始注意事件佇列，此時檢查是否有函式被事件觸發，當有事件發生如點擊事件，它會創造執行環境給這個對應的函式執行。</p>
+<p>JS在瀏覽器的非同步行為，其實是指 <strong>將非同步事件放到事件佇列</strong>，而自己執行同步程式結束後，才處理事件。如果事件觸發函式，就創造執行環境給對應函式，所以說，當瀏覽器的其他引擎或處理器有事件、狀態發生並與JS引擎互動時，這些事件就會被註冊進事件佇列裡。</p>
+<p>看看影片中的程式碼範例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">waitThreeSeconds</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> ms = <span class="number">3000</span> + <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</span><br><span class="line">    <span class="keyword">while</span> (<span class="keyword">new</span> <span class="built_in">Date</span>() &lt; ms)&#123;&#125;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'finished function'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">clickHandler</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'click event!'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'click'</span>, clickHandler);</span><br><span class="line"></span><br><span class="line">waitThreeSeconds();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'finished execution'</span>);</span><br></pre></td></tr></table></figure>
+<p>說明：<br><code>function waitThreeSeconds()</code><br>呼叫它會在3秒後印出finished function</p>
+<p><code>function clickHandler()</code><br>對應下面的<code>document.addEventListener(&#39;click&#39;, clickHandler);</code><br>當瀏覽器監聽到點擊事件，執行clickHandler()，印出click event!</p>
+<p><code>waitThreeSeconds();</code><br>呼叫函式waitThreeSeconds</p>
+<p><code>console.log(&#39;finished execution&#39;);</code><br>印出finished execution</p>
+<p>當在影片聽到<code>function waitThreeSeconds()</code>的<code>3000 + new Date().getTime();</code>3秒說明時，瞬間想了一下，為何這裡不使用常見的<code>setTimeout</code>來處理?<br>…下一秒瞬間回神，阿<code>setTimeout</code>也是非同步的(敲頭)，作者是簡化例子中的同步、非同步判斷，好讓觀眾能易懂，如此一來上述程式中只有click點擊事件是非同步的。</p>
+<p>拉回來，當瀏覽器載入後，顯示印出的東西順序會是如何?<br>點擊事件印出的內容，有辦法比<code>waitThreeSeconds</code>(3秒後才印出東西)或最下面的<code>console.log(&#39;finished execution&#39;)</code>更早印出來嗎?</p>
+<p>執行程式，在網頁載入後快速點擊頁面，結果為：</p>
+<p><img src="https://i.imgur.com/F7GJMAF.png" alt=""></p>
+<blockquote>
+<p>3是我猛按的結果，不要理這個數字…</p>
+</blockquote>
+<p>說明：<br>在<code>waitThreeSeconds()</code>執行完成、全域的<code>console.log(&#39;finished execution&#39;);</code>也執行完成，點擊事件才執行其對應函式<code>clickHandler()</code>，因為JS會先把執行時期的同步程式都執行完，才處理事件。<br>也就是說<strong>執行時間太長的同步程式可以干擾非同步事件的處理時間</strong>，在開發時得注意這點。
 　
 　
 　</p>
-<h2 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h2><p>今天複習了何謂Primitive Types與運算子，明天來看看運算子的優先性。<br>至於今天的筆記內容可以參照Udemy課程：<a href="https://www.udemy.com/javascriptjs/" target="_blank" rel="noopener">JavaScript 全攻略：克服JS 的奇怪部分</a>3-19~3-21</p>
+<h2 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h2><p>同步與非同步是JS中極為重要的一環，當初學習AJAX時，常在書上或聽人說JS會註冊非同步事件，向誰註冊呢?就是事件佇列<code>Event Queue</code>啦。<br>　<br>今天的筆記內容可以參照Udemy課程：<a href="https://www.udemy.com/javascriptjs/" target="_blank" rel="noopener">JavaScript 全攻略：克服JS 的奇怪部分</a>2-13、2-18</p>
 
       
     </div>
@@ -419,8 +425,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/simonallenblog/2018/07/29/2018ITMAN-JS-Day06/" rel="next" title="克服JS奇怪的部分：Day06 JS是同步還是非同步?">
-                <i class="fa fa-chevron-left"></i> 克服JS奇怪的部分：Day06 JS是同步還是非同步?
+              <a href="/simonallenblog/2018/07/28/2018ITMAN/2018ITMAN-JS-Day05/" rel="next" title="克服JS奇怪的部分：Day05 變數與函式環境、外部參照">
+                <i class="fa fa-chevron-left"></i> 克服JS奇怪的部分：Day05 變數與函式環境、外部參照
               </a>
             
           </div>
@@ -429,8 +435,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/simonallenblog/2018/07/29/2018ITMAN-JS-Day08/" rel="prev" title="克服JS奇怪的部分：Day08 運算子的優先性">
-                克服JS奇怪的部分：Day08 運算子的優先性 <i class="fa fa-chevron-right"></i>
+              <a href="/simonallenblog/2018/07/29/2018ITMAN/2018ITMAN-JS-Day07/" rel="prev" title="克服JS奇怪的部分：Day07 型別與運算子">
+                克服JS奇怪的部分：Day07 型別與運算子 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -595,7 +601,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">undefined</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">null</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#boolean"><span class="nav-number">3.</span> <span class="nav-text">boolean</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#number"><span class="nav-number">4.</span> <span class="nav-text">number</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#string"><span class="nav-number">5.</span> <span class="nav-text">string</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#symbol"><span class="nav-number">6.</span> <span class="nav-text">symbol</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小結"><span class="nav-number">7.</span> <span class="nav-text">小結</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#小結"><span class="nav-number">1.</span> <span class="nav-text">小結</span></a></li></ol></div>
             
 
           </div>

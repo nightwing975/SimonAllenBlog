@@ -79,19 +79,15 @@
 
 <meta name="keywords" content="IT鐵人賽,JavaScript,學習筆記">
 <meta property="og:type" content="article">
-<meta property="og:title" content="克服JS奇怪的部分：Day03 執行環境:創造與提升">
-<meta property="og:url" content="https://nightwing975.github.io/2018/07/28/2018ITMAN-JS-Day03/index.html">
+<meta property="og:title" content="克服JS奇怪的部分：Day02 幾個名詞小觀念">
+<meta property="og:url" content="https://nightwing975.github.io/2018/07/28/2018ITMAN/2018ITMAN-JS-Day02/index.html">
 <meta property="og:site_name" content="前端百工">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:image" content="https://2.bp.blogspot.com/-vuFXuz8wvrM/W1waoPQRDFI/AAAAAAAAIak/KE7E9Zpz3q0IskEuEsIOCPK0WjJUfj_nACLcBGAs/s1600/2018ITMANJS03.png">
-<meta property="og:image" content="https://i.imgur.com/C8ZG6K0.png">
-<meta property="og:image" content="https://i.imgur.com/HuThyMY.png">
-<meta property="og:image" content="https://i.imgur.com/t1ehlSQ.png">
-<meta property="og:image" content="https://i.imgur.com/bZgLtLK.png">
-<meta property="og:updated_time" content="2018-07-29T04:32:41.848Z">
+<meta property="og:image" content="https://4.bp.blogspot.com/-tQQ8tog2G-I/W1wan49c2CI/AAAAAAAAIac/6PI_O8WGQQwV89sv8pRZjhakhw-dg1KYwCLcBGAs/s1600/2018ITMANJS02.png">
+<meta property="og:updated_time" content="2018-07-29T04:38:22.674Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="克服JS奇怪的部分：Day03 執行環境:創造與提升">
-<meta name="twitter:image" content="https://2.bp.blogspot.com/-vuFXuz8wvrM/W1waoPQRDFI/AAAAAAAAIak/KE7E9Zpz3q0IskEuEsIOCPK0WjJUfj_nACLcBGAs/s1600/2018ITMANJS03.png">
+<meta name="twitter:title" content="克服JS奇怪的部分：Day02 幾個名詞小觀念">
+<meta name="twitter:image" content="https://4.bp.blogspot.com/-tQQ8tog2G-I/W1wan49c2CI/AAAAAAAAIac/6PI_O8WGQQwV89sv8pRZjhakhw-dg1KYwCLcBGAs/s1600/2018ITMANJS02.png">
 
 
 
@@ -121,13 +117,13 @@
 
 
 
-  <link rel="canonical" href="https://nightwing975.github.io/2018/07/28/2018ITMAN-JS-Day03/"/>
+  <link rel="canonical" href="https://nightwing975.github.io/2018/07/28/2018ITMAN/2018ITMAN-JS-Day02/"/>
 
 
 
 
 
-  <title>克服JS奇怪的部分：Day03 執行環境:創造與提升 | 前端百工</title>
+  <title>克服JS奇怪的部分：Day02 幾個名詞小觀念 | 前端百工</title>
   
 
 
@@ -273,7 +269,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://nightwing975.github.io/simonallenblog/2018/07/28/2018ITMAN-JS-Day03/">
+    <link itemprop="mainEntityOfPage" href="https://nightwing975.github.io/simonallenblog/2018/07/28/2018ITMAN/2018ITMAN-JS-Day02/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Simon Allen">
@@ -290,7 +286,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">克服JS奇怪的部分：Day03 執行環境:創造與提升</h1>
+          <h1 class="post-title" itemprop="name headline">克服JS奇怪的部分：Day02 幾個名詞小觀念</h1>
         
 
         <div class="post-meta">
@@ -302,7 +298,7 @@
               
                 <span class="post-meta-item-text">發表於</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2018-07-28T16:28:38+08:00">
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2018-07-28T16:14:35+08:00">
                 2018-07-28
               </time>
             
@@ -362,36 +358,54 @@
       
 
       
-        <p><img src="https://2.bp.blogspot.com/-vuFXuz8wvrM/W1waoPQRDFI/AAAAAAAAIak/KE7E9Zpz3q0IskEuEsIOCPK0WjJUfj_nACLcBGAs/s1600/2018ITMANJS03.png" alt=""><br><a id="more"></a></p>
+        <p><img src="https://4.bp.blogspot.com/-tQQ8tog2G-I/W1wan49c2CI/AAAAAAAAIac/6PI_O8WGQQwV89sv8pRZjhakhw-dg1KYwCLcBGAs/s1600/2018ITMANJS02.png" alt=""><br><a id="more"></a></p>
 <blockquote>
-<p>此為筆者 2018 IT鐵人賽 筆記備份：<a href="https://ithelp.ithome.com.tw/articles/10190700" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10190700</a></p>
+<p>此為筆者 2018 IT鐵人賽 筆記備份：<a href="https://ithelp.ithome.com.tw/articles/10190637" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10190637</a></p>
 </blockquote>
 <hr>
-<p>JavaScript在電腦上要執行時，會經過創造階段，這會對我們的程式碼造成什麼影響?<br>來看看以下程式碼：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">'Hello World!'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Called b!'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">b();</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br></pre></td></tr></table></figure>
-<p>用瀏覽器Console來看<br><img src="https://i.imgur.com/C8ZG6K0.png" alt=""><br>嗯!很正常</p>
-<p>那這樣呢?下面這種寫法，有些程式語言會報錯，但JS可不會呦<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">b(); </span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = <span class="string">'Hello World!'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Called b!'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>用瀏覽器Console來看<br><img src="https://i.imgur.com/HuThyMY.png" alt=""><br>Called b!正常被印出來，代表函式b有正常執行，但是<code>undefined</code>呢?</p>
-<p>當我們在編輯器存檔，並在網頁重新整理(執行時)，我們寫的JS在執行前會先經過一個階段：</p>
-<blockquote>
-<p>創造(creation)：直譯器將我們程式所寫的變數與函式創造並設定到電腦的記憶體裡。</p>
-</blockquote>
-<p>實際上語法解析器將我們的程式碼轉換給電腦時，它會知道我們在程式的哪裡宣告變數與函式，在<strong>創造</strong>(給電腦)階段會先將變數與函式的定義按順序設定在記憶體裡，然後才會<strong>執行</strong>我們其他的程式。<br>　<br>那為什麼變數a會是<code>undefined</code>?<br>在轉換給電腦執行的創造階段時，函數與其函數內容(定義)會先存至記憶體，所以可以正確的呼叫，呼叫後建立這個函式的執行環境，印出Called b!<br>　<br>而變數雖然也會被創造存至記憶體，但其賦值內容並沒有再創造時跟著被進去，這邊可以把創造變數與賦值給變數當成兩件事，所以呼叫變數a才會印出<code>undefined</code><br>　<br>上面的一樣的程式碼，電腦執行時可以想像成是這樣的順序：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Called b!'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">b();</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line">a = <span class="string">'Hello World!'</span>;</span><br></pre></td></tr></table></figure></p>
-<p>結果會是一樣的，再看看以下程式碼：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">boy();</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">boy</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="string">'Yoo!'</span>;</span><br><span class="line">	<span class="built_in">console</span>.log(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>結果會是怎麼樣?<br>用瀏覽器Console來看<br><img src="https://i.imgur.com/t1ehlSQ.png" alt=""></p>
-<p>和變數有點不一樣，function是呼叫才創造執行環境並在裏頭創造他的區域變數，故可以正常顯示出來。<br>那如果是這樣呢?</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">boy();</span><br><span class="line"><span class="keyword">var</span> boy = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="string">'Yoo!'</span>;</span><br><span class="line">	<span class="built_in">console</span>.log(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>好像差不多，結果是?<br>用瀏覽器Console來看<br><img src="https://i.imgur.com/bZgLtLK.png" alt=""></p>
-<p>執行時我們可以這樣想：</p>
-<p>var boy先被提升到最上面(創造變數boy並設定進記憶體)<br>接著呼叫執行boy函式<br>給變數boy賦值(指向)函式</p>
-<p>呼叫執行boy函式時報錯，是因為變數boy這個時候<strong>根本沒有被賦值</strong>，何況是指向函式呼叫呢？所以自然報錯<code>boy is not a function</code>，可以想像成是這樣：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> boy</span><br><span class="line">boy();</span><br><span class="line">boy = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="string">'Yoo!'</span>;</span><br><span class="line">	<span class="built_in">console</span>.log(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>結果會是一樣的<br>　<br>　<br>當然這不代表我們寫在編輯器或IDE上的JS程式被竄寫成這樣，而是電腦執行JS的順序變成這樣，這種乍看變數與函式被拉到作用域最前面的現象稱為<strong>Hoisting</strong><br>這裡也可以參考<a href="https://developer.mozilla.org/zh-TW/docs/Glossary/Hoisting" target="_blank" rel="noopener">MDN</a>與<a href="https://www.w3schools.com/js/js_hoisting.asp" target="_blank" rel="noopener">W3C</a>
+<p>今天的筆記比較偏觀念性質，畢竟是<a href="https://www.udemy.com/javascriptjs/" target="_blank" rel="noopener">克服JS的奇怪部分</a>這堂課開頭的部分，但對我這個非資訊本科的人來說也很受用了。</p>
+<h2 id="語法解析器-Syntax-Parser"><a href="#語法解析器-Syntax-Parser" class="headerlink" title="語法解析器(Syntax Parser)"></a>語法解析器(Syntax Parser)</h2><p>程式、電腦科學的世界中，電腦並不會直接看懂JavaScript在(以下簡稱JS)寫什麼，而是會將JS轉譯成電腦看得懂的語言，可以這樣想：</p>
+<p>當我們寫好JS程式時，在執行時，我們宣告的變數、函式，就會呈現在記憶體中，由電腦去運作使用。而中間負責將我們寫的JS轉換給電腦的，就是 “直譯器、轉譯器”。</p>
+<p>它會逐字閱讀，當讀到var、let、const時，他就會知道我們要宣告個什麼東西，當讀到function，它會知道這是一個函式，只要我們在撰寫時遵守JS語法規則，執行時直譯器、轉譯器就會依照規則將其轉換成電腦認識的語言，而這個中介的引擎被稱為直譯、轉譯器。</p>
+<h2 id="詞彙環境-Lexical-Environment"><a href="#詞彙環境-Lexical-Environment" class="headerlink" title="詞彙環境(Lexical Environment)"></a>詞彙環境(Lexical Environment)</h2><p>代表程式碼在程式中的實際所在位置<br>蛤?什麼意思?</p>
+<p>Lexical代表的是和程式的語法有關，特定的程式寫在哪裡是很重要的，例如：<br>當我們撰寫出一段宣告變數的JS語法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> food = <span class="string">"potato"</span>;</span><br></pre></td></tr></table></figure>
+<p>它被寫在哪呢?它在一個函數中嗎?</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">kitchen</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> food = <span class="string">"potato"</span>;</span><br><span class="line">    <span class="comment">//下略...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>它的周圍的環境是什麼?它被包在物件、陣列中嗎?</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myhome = &#123;</span><br><span class="line">    kitchen:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> food = <span class="string">"potato"</span>;</span><br><span class="line">        <span class="comment">//下略...</span></span><br><span class="line">    &#125;,</span><br><span class="line">    bedroom:&#123;</span><br><span class="line">        <span class="comment">//下略...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>當我們在編輯器存檔，在瀏覽器重新整理時，JS不會給電腦直接執行，而是透過引擎和語法解析器轉譯、翻譯給電腦執行，而程式語法所寫在的位置，可以影響執行階段時，它對應的記憶體位置，也能影響它和其他變數函式的互動。<br>所以談到詞彙環境(Lexical Environment)就是指開發環境中的程式位置。
+　</p>
+<h2 id="執行環境-Execution-Context"><a href="#執行環境-Execution-Context" class="headerlink" title="執行環境(Execution Context)"></a>執行環境(Execution Context)</h2><p>JS在執行時，其實並不會完全照我們開發時期寫的JS逐字逐行去執行。<br>是的，解析器、直譯器會逐行逐字讀我們寫的code去讀，但轉譯給電腦時並不會逐行逐字按順序丟給電腦記憶體和執行。</p>
+<p>我們的程式碼會在執行時，會先依照詞彙環境(Lexical Environment)被解析器轉換，在電腦中被創造並擺到該放的記憶體位置去，最後電腦才執行。尤其JS某些特性(例如提升)就是在創造階段產生，因此理解JS在執行環境中的狀態是很重要的一件事。
+　
+　</p>
+<h2 id="名稱-值的配對-Name-Value-pair"><a href="#名稱-值的配對-Name-Value-pair" class="headerlink" title="名稱/值的配對(Name/Value pair)"></a>名稱/值的配對(Name/Value pair)</h2><p>名稱/值的配對，代表一個名稱會對應到一個值。<br>在執行時期(執行環境中)一段正在運行的程式碼，同樣的名稱只會有一個。<br>一個名稱只能被一個值定義，而這個值可以是更多名稱/值的配對，這是什麼意思呢?</p>
+<p>例如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ithome = <span class="string">"30day"</span></span><br></pre></td></tr></table></figure></p>
+<p>var       -&gt;宣告<br>ithome    -&gt;變數名<br>“30day”   -&gt;值(字串)</p>
+<p>這就是一個名稱/值的配對</p>
+<p>而討論到物件時也可以用一樣的概念，<strong>物件也是名稱與值配對的組合</strong>，值可以是字串、數值、陣列、函式、另一個物件，可以這樣想：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	Superman:&#123;</span><br><span class="line">        gender: <span class="string">'男'</span>,</span><br><span class="line">        color: <span class="string">'blue'</span>,</span><br><span class="line">        superPower: &#123;</span><br><span class="line">            speed: <span class="number">90</span>,</span><br><span class="line">            strong: <span class="number">200</span></span><br><span class="line">	    &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Superman也是<strong>名稱/值的組合</strong>，名子是Superman，值是物件，往內看：<br>gender是名稱，’男’是gender的值；color是名稱，’blue’是color的值；superPower是名稱，值則是另外一個名稱/值的配對。</p>
+<p>反過來看，Superman也可以被包在某個名稱/值組合裡，是另外一個名稱/值的配對(好饒口)。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    JusticeLeague:&#123;</span><br><span class="line">        Superman:&#123;</span><br><span class="line">            color: <span class="string">'blue'</span>,</span><br><span class="line">            superPower: &#123;</span><br><span class="line">                speed: <span class="number">90</span>,</span><br><span class="line">                strong: <span class="number">200</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        Batman:&#123;</span><br><span class="line">            color: <span class="string">'black'</span>,</span><br><span class="line">            power: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">"I am rich!"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        Wonderwoman:&#123;....&#125;,</span><br><span class="line">        Flash:&#123;....&#125;,</span><br><span class="line">        Aquaman:&#123;....&#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>現在JusticeLeague的值也是個物件，裏頭有名稱Superman、Batman、Wonderwoman…等等，而Superman還可以在往下看，它的值裡又有其他名稱/值的組合，可以瞭解就算這樣一層一層的往下衍生，在JS中，物件本質還是名稱/值的配對組合。
+　</p>
+<h2 id="全域環境與全域物件"><a href="#全域環境與全域物件" class="headerlink" title="全域環境與全域物件"></a>全域環境與全域物件</h2><p>不論何時執行JS程式，JS都會在執行環境(execution context)裡執行，而全域環境就是指在執行時，把我們的程式碼包在裏頭執行的環境(像個包裹一樣)。JS在執行時都會創造一個基礎執行環境作為他的全域環境，以網頁來說全域通常就是瀏覽器window，而Node.js就是Global。</p>
+<p>在電腦執行JS時(執行時期)，全域環境被創造時也會跟著產生全域物件(Global Object)和「this」。<br>「全域」指的是我們在程式的任何地方都可以取用、呼叫它，可以想像成「公共」比較好理解，舉個例子：</p>
+<p>我在公司上班，公司對於我就是全域環境。<br>我可以自由的使用茶水間的飲水機，飲水機對我來說就是全域物件，公共都可以使用，不只我可以用，別的部門也可以用。以此概念來發想，即便函式寫得再複雜，一層包一層，在裏頭也是可以取用全域的變數與物件的。
 　
 　
 　
 　</p>
-<h2 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h2><p>今天複習了執行環境的創造與Hoisting，Hoisting是JS奇妙的特性之一，也是初級前端工程師面試常考的題目之一，實際開發時最好注意宣告變數與定義函式的部分，可以降低雷點的發生。<br>　<br>今天的筆記內容可以參照Udemy課程：<a href="https://www.udemy.com/javascriptjs/" target="_blank" rel="noopener">JavaScript 全攻略：克服JS 的奇怪部分</a>2-10</p>
+<h2 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h2><p>今天認識、複習到了幾個觀念與名詞(慘了好像都在打中文字比較多….)</p>
+<ul>
+<li>語法解析器</li>
+<li>詞彙環境</li>
+<li>執行環境</li>
+<li>名稱/值的配對</li>
+<li>全域環境與全域物件
+　</li>
+</ul>
+<p>筆記內容可以參照Udemy課程：<a href="https://www.udemy.com/javascriptjs/" target="_blank" rel="noopener">JavaScript 全攻略：克服JS 的奇怪部分</a>2-6至2-9</p>
 
       
     </div>
@@ -426,8 +440,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/simonallenblog/2018/07/28/2018ITMAN-JS-Day02/" rel="next" title="克服JS奇怪的部分：Day02 幾個名詞小觀念">
-                <i class="fa fa-chevron-left"></i> 克服JS奇怪的部分：Day02 幾個名詞小觀念
+              <a href="/simonallenblog/2018/07/28/2018ITMAN/2018ITMAN-JS-Day01/" rel="next" title="克服JS奇怪的部分：Day01 前言">
+                <i class="fa fa-chevron-left"></i> 克服JS奇怪的部分：Day01 前言
               </a>
             
           </div>
@@ -436,8 +450,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/simonallenblog/2018/07/28/2018ITMAN-JS-Day04/" rel="prev" title="克服JS奇怪的部分：Day04 undefined與not defined">
-                克服JS奇怪的部分：Day04 undefined與not defined <i class="fa fa-chevron-right"></i>
+              <a href="/simonallenblog/2018/07/28/2018ITMAN/2018ITMAN-JS-Day03/" rel="prev" title="克服JS奇怪的部分：Day03 執行環境:創造與提升">
+                克服JS奇怪的部分：Day03 執行環境:創造與提升 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -602,7 +616,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#小結"><span class="nav-number">1.</span> <span class="nav-text">小結</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#語法解析器-Syntax-Parser"><span class="nav-number">1.</span> <span class="nav-text">語法解析器(Syntax Parser)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#詞彙環境-Lexical-Environment"><span class="nav-number">2.</span> <span class="nav-text">詞彙環境(Lexical Environment)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#執行環境-Execution-Context"><span class="nav-number">3.</span> <span class="nav-text">執行環境(Execution Context)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#名稱-值的配對-Name-Value-pair"><span class="nav-number">4.</span> <span class="nav-text">名稱/值的配對(Name/Value pair)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全域環境與全域物件"><span class="nav-number">5.</span> <span class="nav-text">全域環境與全域物件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小結"><span class="nav-number">6.</span> <span class="nav-text">小結</span></a></li></ol></div>
             
 
           </div>
