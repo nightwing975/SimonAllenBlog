@@ -3,6 +3,7 @@ title: 克服JS奇怪的部分：Day06 JS是同步還是非同步?
 date: 2018-07-29 11:44:04
 categories: 2018 IT鐵人賽
 tags:
+ - 網頁前端
  - IT鐵人賽
  - JavaScript
  - 學習筆記
