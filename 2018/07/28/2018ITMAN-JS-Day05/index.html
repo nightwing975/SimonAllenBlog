@@ -87,7 +87,7 @@
 <meta property="og:image" content="https://i.imgur.com/ZfyAKoP.png">
 <meta property="og:image" content="https://i.imgur.com/LDvRC7C.png">
 <meta property="og:image" content="https://i.imgur.com/SwabguR.png">
-<meta property="og:updated_time" content="2018-07-28T08:50:15.960Z">
+<meta property="og:updated_time" content="2018-07-29T03:50:14.693Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="克服JS奇怪的部分：Day05 變數與函式環境、外部參照">
 <meta name="twitter:image" content="https://3.bp.blogspot.com/-2i4JtO_DU_Q/W1wapAcFmXI/AAAAAAAAIaw/kaZqut-L1MAiHHQLvZ8zpxAkcFv4L-1XACLcBGAs/s1600/2018ITMANJS05.png">
@@ -343,6 +343,7 @@
 <blockquote>
 <p>此為筆者 2018IT鐵人賽 筆記備份：<a href="https://ithelp.ithome.com.tw/articles/10190998" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10190998</a></p>
 </blockquote>
+<hr>
 <p>執行JavaScript時，接收到翻譯的電腦會先創造一個全域執行環境。當程式呼叫函式，就會在全域環境中創造該函式的(區域)執行環境。而每個執行環境不論全域或區域，都有屬於自己的<strong>變數作用域</strong>存在。</p>
 <p>來看看以下程式碼：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> myVar;</span><br><span class="line">	<span class="built_in">console</span>.log(myVar);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> myVar = <span class="number">2</span>;</span><br><span class="line">	<span class="built_in">console</span>.log(myVar);</span><br><span class="line">	b();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> myVar = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">console</span>.log(myVar); </span><br><span class="line">a();</span><br></pre></td></tr></table></figure>
@@ -423,6 +424,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/simonallenblog/2018/07/29/2018ITMAN-JS-Day06/" rel="prev" title="克服JS奇怪的部分：Day06 JS是同步還是非同步?">
+                克服JS奇怪的部分：Day06 JS是同步還是非同步? <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -502,7 +507,7 @@
               
                 <a href="/simonallenblog/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>

@@ -79,16 +79,30 @@
 
 <meta name="keywords" content="IT鐵人賽,JavaScript,學習筆記">
 <meta property="og:type" content="article">
-<meta property="og:title" content="克服JS奇怪的部分：Day04 undefined與not defined">
-<meta property="og:url" content="https://nightwing975.github.io/2018/07/28/2018ITMAN-JS-Day04/index.html">
+<meta property="og:title" content="克服JS奇怪的部分：Day09 強制型轉與比較運算子">
+<meta property="og:url" content="https://nightwing975.github.io/2018/07/29/2018ITMAN-JS-Day09/index.html">
 <meta property="og:site_name" content="前端百工">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:image" content="https://4.bp.blogspot.com/-ujC_t_jn8bM/W1waoo-OThI/AAAAAAAAIao/8upC6aL0wQITKLJopMwLig2Eak-ctW7PgCLcBGAs/s1600/2018ITMANJS04.png">
-<meta property="og:image" content="https://i.imgur.com/K1aOVad.png">
-<meta property="og:updated_time" content="2018-07-29T03:50:26.362Z">
+<meta property="og:image" content="https://3.bp.blogspot.com/-CzWCO7Lv9tY/W1waplo7sCI/AAAAAAAAIa4/S-CJuKPMOZ8-C11d8R9KsbhANarx4m_6QCLcBGAs/s1600/2018ITMANJS09.png">
+<meta property="og:image" content="https://i.imgur.com/AYAwxvG.png">
+<meta property="og:image" content="https://i.imgur.com/yY5KfzQ.png">
+<meta property="og:image" content="https://i.imgur.com/ETq5JUQ.png">
+<meta property="og:image" content="https://i.imgur.com/s4iHZ5K.png">
+<meta property="og:image" content="https://i.imgur.com/tQoqa8b.png">
+<meta property="og:image" content="https://i.imgur.com/fEhsHZn.png">
+<meta property="og:image" content="https://i.imgur.com/vcRPn9S.png">
+<meta property="og:image" content="https://i.imgur.com/DSk85jw.png">
+<meta property="og:image" content="https://i.imgur.com/7r4NmPj.png">
+<meta property="og:image" content="https://i.imgur.com/Z8c6OyI.png">
+<meta property="og:image" content="https://i.imgur.com/MjQA7SN.png">
+<meta property="og:image" content="https://i.imgur.com/EqgSKCA.png">
+<meta property="og:image" content="https://i.imgur.com/0BABVsE.png">
+<meta property="og:image" content="https://i.imgur.com/DODbSRz.png">
+<meta property="og:image" content="https://i.imgur.com/jR4WFIL.png">
+<meta property="og:updated_time" content="2018-07-29T04:15:42.883Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="克服JS奇怪的部分：Day04 undefined與not defined">
-<meta name="twitter:image" content="https://4.bp.blogspot.com/-ujC_t_jn8bM/W1waoo-OThI/AAAAAAAAIao/8upC6aL0wQITKLJopMwLig2Eak-ctW7PgCLcBGAs/s1600/2018ITMANJS04.png">
+<meta name="twitter:title" content="克服JS奇怪的部分：Day09 強制型轉與比較運算子">
+<meta name="twitter:image" content="https://3.bp.blogspot.com/-CzWCO7Lv9tY/W1waplo7sCI/AAAAAAAAIa4/S-CJuKPMOZ8-C11d8R9KsbhANarx4m_6QCLcBGAs/s1600/2018ITMANJS09.png">
 
 
 
@@ -118,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="https://nightwing975.github.io/2018/07/28/2018ITMAN-JS-Day04/"/>
+  <link rel="canonical" href="https://nightwing975.github.io/2018/07/29/2018ITMAN-JS-Day09/"/>
 
 
 
 
 
-  <title>克服JS奇怪的部分：Day04 undefined與not defined | 前端百工</title>
+  <title>克服JS奇怪的部分：Day09 強制型轉與比較運算子 | 前端百工</title>
   
 
 
@@ -270,7 +284,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://nightwing975.github.io/simonallenblog/2018/07/28/2018ITMAN-JS-Day04/">
+    <link itemprop="mainEntityOfPage" href="https://nightwing975.github.io/simonallenblog/2018/07/29/2018ITMAN-JS-Day09/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Simon Allen">
@@ -287,7 +301,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">克服JS奇怪的部分：Day04 undefined與not defined</h1>
+          <h1 class="post-title" itemprop="name headline">克服JS奇怪的部分：Day09 強制型轉與比較運算子</h1>
         
 
         <div class="post-meta">
@@ -299,8 +313,8 @@
               
                 <span class="post-meta-item-text">發表於</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2018-07-28T16:35:25+08:00">
-                2018-07-28
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2018-07-29T12:11:27+08:00">
+                2018-07-29
               </time>
             
 
@@ -337,37 +351,65 @@
       
 
       
-        <p><img src="https://4.bp.blogspot.com/-ujC_t_jn8bM/W1waoo-OThI/AAAAAAAAIao/8upC6aL0wQITKLJopMwLig2Eak-ctW7PgCLcBGAs/s1600/2018ITMANJS04.png" alt=""><br><a id="more"></a></p>
+        <p><img src="https://3.bp.blogspot.com/-CzWCO7Lv9tY/W1waplo7sCI/AAAAAAAAIa4/S-CJuKPMOZ8-C11d8R9KsbhANarx4m_6QCLcBGAs/s1600/2018ITMANJS09.png" alt=""><br><a id="more"></a></p>
 <blockquote>
-<p>此為筆者 2018IT鐵人賽 筆記備份：<a href="https://ithelp.ithome.com.tw/articles/10190904" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10190904</a></p>
+<p>此為筆者 2018IT鐵人賽 筆記備份：<a href="https://ithelp.ithome.com.tw/articles/10191375" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10191375</a></p>
 </blockquote>
 <hr>
-<p>昨天的筆記出現<code>undefined</code>與<code>not defined</code>，今天我們來看看兩者的差異。</p>
-<p><code>undefined</code>和<code>not defined</code>「字面上」來看都是未定義、無定義、沒有定義..之類的。<br>但對JavaScript(以下簡稱JS)而言，兩者的意涵完全不相同。在JS的世界裡，當我們宣告變數時，JS會給變數預設的值，就是<code>undefined</code>。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">100</span>;</span><br><span class="line"><span class="comment">// 或你要用ES6語法也可以</span></span><br><span class="line"><span class="comment">// let a = 100;</span></span><br></pre></td></tr></table></figure>
-<p>其實JS背後是這樣運作的，執行程式時，電腦先建立全域執行環境，接著創造階段把變數創造進記憶體。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a; <span class="comment">// 建立變數a</span></span><br><span class="line"><span class="comment">// 此時a為undefined</span></span><br></pre></td></tr></table></figure>
-<p>創造階段結束後JS才把100賦值給a<br>那如果直接這樣寫：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(b);</span><br></pre></td></tr></table></figure>
-<p>沒宣告b就直接用console.log印出來，結果是：<br><img src="https://i.imgur.com/K1aOVad.png" alt=""><br>這是怎麼一回事呢?</p>
-<p>因為我們並沒有宣告b這個變數存在，在電腦或瀏覽器執行JS程式碼時，會先創造全域執行環境，然後創造我們宣告的變數進記憶體。</p>
-<p>接著執行程式的運算敘述與判斷，因為我們沒宣告b，電腦執行<code>console.log(b)</code>這段時，發現找不到b這個變數。既然記憶體裡沒有變數b，那自然返回<code>b is not defined</code>，因為b這個東西並沒有被定義其存在。</p>
-<p>若是<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">100</span>;</span><br></pre></td></tr></table></figure></p>
-<p>誠如<a href="https://ithelp.ithome.com.tw/articles/10190700" target="_blank" rel="noopener">昨天筆記</a>，執行時建立全域執行環境，創造宣告的東西，於是變數a被創造了，並且JS預設這個a值是<code>undefined</code>，表示其值還未被定義，我們可以賦值、指向其他東西給a。</p>
-<p>另外，<code>undefined</code>不代表什麼都沒有，在JS中<code>undefined</code>既是個型別，也是一個值，這個型別<code>undefined</code>的值就叫<code>undefined</code>，既然不代表什麼都沒有，那僅宣告變數自然也會佔據記憶體空間。</p>
-<p>課程影片的最後，提到盡量避免這種寫法：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="literal">undefined</span>;</span><br></pre></td></tr></table></figure>
-<p>程式運行可以拆成這樣想</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a <span class="comment">//創造變數，此時a為undefined</span></span><br><span class="line">a = <span class="literal">undefined</span> <span class="comment">//此時a賦值為undefined</span></span><br></pre></td></tr></table></figure>
-<p>不要給變數手動賦值<code>undefined</code>，因為當JS創造變數時，預設就已經是<code>undefined</code>了。<br>不管是要debug還是預先宣告變數而不賦值，這樣多此一舉，可能會導致除錯時，分不清楚<code>undefined</code>是一開始執行時給的，還是自己賦值進去的。<br>若要先宣告變數又暫時不給值，或要表示後續程式碼才會用該變數時，可以先這樣寫：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a;</span><br></pre></td></tr></table></figure>
-<p>或<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure></p>
-<p><code>null</code>有空空如也的含意，它和<code>undefined</code>一樣，既是個值也是一個型別。
-　
-　
+<p>今天我們來看看強制型轉與比較運算子</p>
+<p>JavaScript是動態型別<code>Dynamic Typing</code>語言，故非常容易發生強制型轉這件事。</p>
+<blockquote>
+<p>強制型轉<code>Coercion</code>，JavaScript自動轉換值的型別。</p>
+</blockquote>
+<p>例如說：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span> + <span class="number">2</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a)</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/AYAwxvG.png" alt=""><br>結果是3，合理！</p>
+<p>那這樣呢?<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span> + <span class="string">'2'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a)</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/yY5KfzQ.png" alt=""></p>
+<p>發生了什麼事?</p>
+<p>這裡我們可以用<code>typeof()</code>這個內建函式來查看一下a現在的型別<br><img src="https://i.imgur.com/ETq5JUQ.png" alt=""><br><code>string</code>(字串)</p>
+<p>對JS而言，當數值與字串相加時，它會將數值自動轉型為字串，所以1變成’1’。<br>實際執行可以想像變成：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">'1'</span> + <span class="string">'2'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>字串’1’與字串’2’相加就是字串’12’，而不是數學意義上的相加。</p>
+<p>以此聯想，那：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> b = <span class="string">'ithome'</span> + <span class="number">30</span>;</span><br><span class="line"><span class="built_in">console</span>.log(b)</span><br></pre></td></tr></table></figure></p>
+<p>console會印出什麼?<br><img src="https://i.imgur.com/s4iHZ5K.png" alt=""><br>字串’ithome’與數值30相加結果是字串’ithome30’<br>用<code>typeof()</code>來查看一下b現在的型別<br><img src="https://i.imgur.com/tQoqa8b.png" alt=""><br><code>string</code>(字串)</p>
+<p>…不過<br>很些人會以為<strong>「阿~在JS只要數值與字串計算，數值就會被轉成字串」</strong><br>或是拿數值類比成硬幣，字串類比成物品，說硬幣(錢)可以數學計算(買賣)也可以當成物品，但物品不一定能拿來數學計算(買賣)，以此比喻數值與字串的計算狀況。</p>
+<p>這麼想容易落入JS的陷阱裡！<br>看看以下程式碼：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> c = <span class="string">'10'</span> * <span class="number">8</span></span><br><span class="line"><span class="built_in">console</span>.log(c)</span><br></pre></td></tr></table></figure>
+<p>console會印出什麼?<br><img src="https://i.imgur.com/fEhsHZn.png" alt=""></p>
+<p>‘10’在計算時型別從字串轉型成數值<br>用typeof()來查看一下c現在的型別<br><img src="https://i.imgur.com/vcRPn9S.png" alt=""><br><code>number</code>(數值)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> d = <span class="string">'10'</span> - <span class="number">8</span></span><br><span class="line"><span class="built_in">console</span>.log(d)</span><br></pre></td></tr></table></figure>
+<p>console會印出什麼?<br><img src="https://i.imgur.com/DSk85jw.png" alt=""></p>
+<p>‘10’在計算時型別從字串轉型成數值<br>用typeof()來查看一下d現在的型別<br><img src="https://i.imgur.com/7r4NmPj.png" alt=""><br><code>number</code>(數值)<br>　<br>所以撇開<code>+</code>不說，字串和數值進行<strong>計算</strong>時，不是只有數值會轉成字串，字串也有可能轉成數值。</p>
+<p>接著來看看以下程式碼<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span> &lt; <span class="number">2</span> &lt; <span class="number">3</span>);</span><br></pre></td></tr></table></figure></p>
+<p>console會印出什麼?<br><img src="https://i.imgur.com/Z8c6OyI.png" alt=""></p>
+<p>合理!</p>
+<p>那<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="number">3</span> &lt; <span class="number">2</span> &lt; <span class="number">1</span>);</span><br></pre></td></tr></table></figure></p>
+<p>console會印出什麼?<br><img src="https://i.imgur.com/MjQA7SN.png" alt=""></p>
+<p>疑?為什麼也是true?</p>
+<p>誠如昨天筆記，當運算子<strong>優先性</strong>相同，就依據<strong>相依性</strong>來判斷是左到右執行還是右到左執行。<br>現在有兩個<code>&lt;</code>運算子，所以<strong>優先性</strong>是一樣的，那就再來看<code>&lt;</code>的相依性：<br><code>&lt;</code>相依性為左到右，所以<code>3 &lt; 2 &lt; 1</code> 的執行順序是先比較3和2，再比較1。<br><code>3 &lt; 2</code>相比結果是false，接著再運行<code>false &lt; 1</code>的相比較。</p>
+<p>在JS中，true若被強制型轉成數值會是1，false被強制型轉成數值會是0。<br>這裡的false因為與數值進行比較判斷，被JS自動型轉成0，變成<code>0 &lt; 1</code>，而<code>0 &lt; 1</code>成立，回傳結果true。<br>要判斷哪些東西會被轉型成數字可以用<code>Number()</code>這個內建函式：</p>
+<p><img src="https://i.imgur.com/EqgSKCA.png" alt=""></p>
+<p><code>NaN</code>在JS中表示 <strong>Not a Number</strong><br>表示 <strong>不是數值</strong><br>它也不是原始型別<code>Primitive Types</code></p>
+<p>所以若是今天筆記前面的例子<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> b = <span class="string">'ithome'</span> + <span class="number">30</span>;</span><br><span class="line"><span class="built_in">console</span>.log(b)</span><br></pre></td></tr></table></figure></p>
+<p>會印出字串ithome30</p>
+<p>那<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> b = <span class="string">'ithome'</span> - <span class="number">30</span>;</span><br><span class="line"><span class="built_in">console</span>.log(b)</span><br></pre></td></tr></table></figure></p>
+<p>字串<code>string</code>減數值<code>Number</code>，執行時字串ithome無法被自動型轉成數值<br>結果自然是<br><img src="https://i.imgur.com/0BABVsE.png" alt=""></p>
+<p>拉回 <strong>比較</strong>的主題，要在JS中進行數學的比較(兩邊是否相等)，可以使用<code>==</code>運算子。</p>
+<p>若是用<code>==</code>運算子來比較<code>數值</code>0與<code>布林值</code>false，會發生什麼事呢?<br><img src="https://i.imgur.com/DODbSRz.png" alt=""><br>比較時被強制自動轉型(型別轉換)了<br>上面說過false與數值互動時會自動型轉成0，執行時實際變成是<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span> == <span class="number">0</span></span><br></pre></td></tr></table></figure></p>
+<p>0與0相等嗎?<br>當然囉，所以回傳true。</p>
+<p>只不過我們都知道，0和false根本是不同的東西，它們連型別都不同呀！<br>這個時候，可以使用<code>===</code>運算子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span> === <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/jR4WFIL.png" alt=""></p>
+<p>false！<br>同樣是比較左右是否相等，<code>==</code>和<code>===</code>差異是什麼？<br>因為<code>==</code>運算子只比較值，故型別會有轉型來轉型去的狀況，而使用三個<code>=</code>是<strong>嚴格比較</strong>，<code>===</code>運算子不只比對左右兩邊的值，<strong>連型別也會一起比較</strong>，0的型別是數值，false的型別是布林，比較過程中不轉型，兩邊不相等就回傳false囉。</p>
+<p>引用自影片作者對三個<code>===</code>的評語</p>
+<blockquote>
+<p><strong>That is going to save your life.</strong></p>
+</blockquote>
+<p>　
 　
 　</p>
-<h2 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h2><p><code>undefined</code>和<code>not defined</code>是不一樣的東西：<br><code>undefined</code>則是建立後尚未賦值時，<strong>預設的值</strong>，而這個值表示<strong>值還沒被定義</strong>。<br><code>not defined</code>是變數、函式..等未被宣告建立、定義，在電腦執行程式碼時找不到這個東西，可以想成 <strong>在程式與記憶體中未被定義</strong>。<br>　<br>今天的筆記內容可以參照Udemy課程：<a href="https://www.udemy.com/javascriptjs/" target="_blank" rel="noopener">JavaScript 全攻略：克服JS 的奇怪部分</a>2-11</p>
+<h2 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h2><p>JS是動態語言，會有自動轉型(型轉)的狀況發生，除非我們就是故意要讓它轉換型別來比較、運算，否則進行相等比較時，最好使用===嚴格比較。<br>關於JS的比較表格可以參考MDN的<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness" target="_blank" rel="noopener">相等性比較表格</a></p>
+<p>今天的筆記內容可以參照Udemy課程：<a href="https://www.udemy.com/javascriptjs/" target="_blank" rel="noopener">JavaScript 全攻略：克服JS 的奇怪部分</a>3-24~3-26</p>
 
       
     </div>
@@ -402,8 +444,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/simonallenblog/2018/07/28/2018ITMAN-JS-Day03/" rel="next" title="克服JS奇怪的部分：Day03 執行環境:創造與提升">
-                <i class="fa fa-chevron-left"></i> 克服JS奇怪的部分：Day03 執行環境:創造與提升
+              <a href="/simonallenblog/2018/07/29/2018ITMAN-JS-Day08/" rel="next" title="克服JS奇怪的部分：Day08 運算子的優先性">
+                <i class="fa fa-chevron-left"></i> 克服JS奇怪的部分：Day08 運算子的優先性
               </a>
             
           </div>
@@ -412,8 +454,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/simonallenblog/2018/07/28/2018ITMAN-JS-Day05/" rel="prev" title="克服JS奇怪的部分：Day05 變數與函式環境、外部參照">
-                克服JS奇怪的部分：Day05 變數與函式環境、外部參照 <i class="fa fa-chevron-right"></i>
+              <a href="/simonallenblog/2018/07/29/2018ITMAN-JS-Day10/" rel="prev" title="克服JS奇怪的部分：Day10 存在與布林">
+                克服JS奇怪的部分：Day10 存在與布林 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

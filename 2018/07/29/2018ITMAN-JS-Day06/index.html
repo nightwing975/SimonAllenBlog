@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="IT鐵人賽,JavaScript,學習筆記," />
 
 
 
@@ -77,18 +77,18 @@
 
 
 
-<meta name="description" content="測試廢文一篇">
-<meta name="keywords" content="SimonAllen,前端,前端百工,前端工程師,技術部落格,網頁開發">
+<meta name="keywords" content="IT鐵人賽,JavaScript,學習筆記">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Test">
-<meta property="og:url" content="https://nightwing975.github.io/2018/07/28/Test/index.html">
+<meta property="og:title" content="克服JS奇怪的部分：Day06 JS是同步還是非同步?">
+<meta property="og:url" content="https://nightwing975.github.io/2018/07/29/2018ITMAN-JS-Day06/index.html">
 <meta property="og:site_name" content="前端百工">
-<meta property="og:description" content="測試廢文一篇">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2018-07-28T04:55:55.081Z">
+<meta property="og:image" content="https://2.bp.blogspot.com/-JXDRY0NYcys/W1waoy9p6wI/AAAAAAAAIas/nVx-9niwq-Aan0i37T7KWV02envXOhMnACLcBGAs/s1600/2018ITMANJS06.png">
+<meta property="og:image" content="https://i.imgur.com/F7GJMAF.png">
+<meta property="og:updated_time" content="2018-07-29T03:50:00.101Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Test">
-<meta name="twitter:description" content="測試廢文一篇">
+<meta name="twitter:title" content="克服JS奇怪的部分：Day06 JS是同步還是非同步?">
+<meta name="twitter:image" content="https://2.bp.blogspot.com/-JXDRY0NYcys/W1waoy9p6wI/AAAAAAAAIas/nVx-9niwq-Aan0i37T7KWV02envXOhMnACLcBGAs/s1600/2018ITMANJS06.png">
 
 
 
@@ -118,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="https://nightwing975.github.io/2018/07/28/Test/"/>
+  <link rel="canonical" href="https://nightwing975.github.io/2018/07/29/2018ITMAN-JS-Day06/"/>
 
 
 
 
 
-  <title>Test | 前端百工</title>
+  <title>克服JS奇怪的部分：Day06 JS是同步還是非同步? | 前端百工</title>
   
 
 
@@ -270,7 +270,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://nightwing975.github.io/simonallenblog/2018/07/28/Test/">
+    <link itemprop="mainEntityOfPage" href="https://nightwing975.github.io/simonallenblog/2018/07/29/2018ITMAN-JS-Day06/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Simon Allen">
@@ -287,7 +287,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Test</h1>
+          <h1 class="post-title" itemprop="name headline">克服JS奇怪的部分：Day06 JS是同步還是非同步?</h1>
         
 
         <div class="post-meta">
@@ -299,8 +299,8 @@
               
                 <span class="post-meta-item-text">發表於</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2018-07-28T00:12:59+08:00">
-                2018-07-28
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2018-07-29T11:44:04+08:00">
+                2018-07-29
               </time>
             
 
@@ -309,28 +309,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分類於</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/simonallenblog/categories/Testing/" itemprop="url" rel="index">
-                    <span itemprop="name">Testing</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -359,8 +337,38 @@
       
 
       
-        <h1 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h1><h3 id="廢文一篇"><a href="#廢文一篇" class="headerlink" title="廢文一篇"></a>廢文一篇</h3><a id="more"></a>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app = <span class="number">100</span>;</span><br><span class="line">app = app + <span class="number">200</span>;</span><br><span class="line"><span class="built_in">console</span>.log(app);</span><br></pre></td></tr></table></figure>
+        <p><img src="https://2.bp.blogspot.com/-JXDRY0NYcys/W1waoy9p6wI/AAAAAAAAIas/nVx-9niwq-Aan0i37T7KWV02envXOhMnACLcBGAs/s1600/2018ITMANJS06.png" alt=""><br><a id="more"></a></p>
+<blockquote>
+<p>此為筆者 2018IT鐵人賽 筆記備份：<a href="https://ithelp.ithome.com.tw/articles/10191094" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10191094</a></p>
+</blockquote>
+<hr>
+<p>今天來看看JS，非同步背後的原理，在課程影片中提到：</p>
+<blockquote>
+<p>JavaScript是一個 <strong>單執行緒</strong>、<strong>同步</strong>的程式，它逐行執行程式碼，並不會非同步的執行程式。</p>
+</blockquote>
+<p>等等，同步?<br>JS的特色之一不就是 <strong>非同步</strong>嗎?<br>繼續看下去：</p>
+<p>撇開node.js先不說，JS在瀏覽器執行時依賴引擎來驅動，而瀏覽器不是只有JavaScript引擎的存在，還有其他引擎在處理瀏覽器的其他狀態、程式。有可以呈現東西到瀏覽器畫面上的渲染引擎(Rendering Engine)，也有其他專門處理http請求的東西存在。</p>
+<p>JS引擎可以和瀏覽器的其他引擎、處理器互動，這個互動行為是非同步的，但JS引擎 <strong>自己</strong>在運作JavaScript是同步的。如果有非同步的操作，那會發生什麼事呢?</p>
+<p>JS引擎內的等待列稱為事件佇列<code>Event Queue</code>，如果有事件發生，如滑鼠點擊事件，JS引擎會先將事件放在事件佇列<code>Event Queue</code>，當執行環境的程式都執行完成後，JS才會開始注意事件佇列，此時檢查是否有函式被事件觸發，當有事件發生如點擊事件，它會創造執行環境給這個對應的函式執行。</p>
+<p>JS在瀏覽器的非同步行為，其實是指 <strong>將非同步事件放到事件佇列</strong>，而自己執行同步程式結束後，才處理事件。如果事件觸發函式，就創造執行環境給對應函式，所以說，當瀏覽器的其他引擎或處理器有事件、狀態發生並與JS引擎互動時，這些事件就會被註冊進事件佇列裡。</p>
+<p>看看影片中的程式碼範例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">waitThreeSeconds</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> ms = <span class="number">3000</span> + <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</span><br><span class="line">    <span class="keyword">while</span> (<span class="keyword">new</span> <span class="built_in">Date</span>() &lt; ms)&#123;&#125;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'finished function'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">clickHandler</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'click event!'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'click'</span>, clickHandler);</span><br><span class="line"></span><br><span class="line">waitThreeSeconds();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'finished execution'</span>);</span><br></pre></td></tr></table></figure>
+<p>說明：<br><code>function waitThreeSeconds()</code><br>呼叫它會在3秒後印出finished function</p>
+<p><code>function clickHandler()</code><br>對應下面的<code>document.addEventListener(&#39;click&#39;, clickHandler);</code><br>當瀏覽器監聽到點擊事件，執行clickHandler()，印出click event!</p>
+<p><code>waitThreeSeconds();</code><br>呼叫函式waitThreeSeconds</p>
+<p><code>console.log(&#39;finished execution&#39;);</code><br>印出finished execution</p>
+<p>當在影片聽到<code>function waitThreeSeconds()</code>的<code>3000 + new Date().getTime();</code>3秒說明時，瞬間想了一下，為何這裡不使用常見的<code>setTimeout</code>來處理?<br>…下一秒瞬間回神，阿<code>setTimeout</code>也是非同步的(敲頭)，作者是簡化例子中的同步、非同步判斷，好讓觀眾能易懂，如此一來上述程式中只有click點擊事件是非同步的。</p>
+<p>拉回來，當瀏覽器載入後，顯示印出的東西順序會是如何?<br>點擊事件印出的內容，有辦法比<code>waitThreeSeconds</code>(3秒後才印出東西)或最下面的<code>console.log(&#39;finished execution&#39;)</code>更早印出來嗎?</p>
+<p>執行程式，在網頁載入後快速點擊頁面，結果為：</p>
+<p><img src="https://i.imgur.com/F7GJMAF.png" alt=""></p>
+<blockquote>
+<p>3是我猛按的結果，不要理這個數字…</p>
+</blockquote>
+<p>說明：<br>在<code>waitThreeSeconds()</code>執行完成、全域的<code>console.log(&#39;finished execution&#39;);</code>也執行完成，點擊事件才執行其對應函式<code>clickHandler()</code>，因為JS會先把執行時期的同步程式都執行完，才處理事件。<br>也就是說<strong>執行時間太長的同步程式可以干擾非同步事件的處理時間</strong>，在開發時得注意這點。
+　
+　
+　</p>
+<h2 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h2><p>同步與非同步是JS中極為重要的一環，當初學習AJAX時，常在書上或聽人說JS會註冊非同步事件，向誰註冊呢?就是事件佇列<code>Event Queue</code>啦。<br>　<br>今天的筆記內容可以參照Udemy課程：<a href="https://www.udemy.com/javascriptjs/" target="_blank" rel="noopener">JavaScript 全攻略：克服JS 的奇怪部分</a>2-13、2-18</p>
 
       
     </div>
@@ -376,6 +384,16 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/simonallenblog/tags/IT鐵人賽/" rel="tag"># IT鐵人賽</a>
+          
+            <a href="/simonallenblog/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/simonallenblog/tags/學習筆記/" rel="tag"># 學習筆記</a>
+          
+        </div>
+      
 
       
       
@@ -385,8 +403,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/simonallenblog/2018/07/27/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/simonallenblog/2018/07/28/2018ITMAN-JS-Day05/" rel="next" title="克服JS奇怪的部分：Day05 變數與函式環境、外部參照">
+                <i class="fa fa-chevron-left"></i> 克服JS奇怪的部分：Day05 變數與函式環境、外部參照
               </a>
             
           </div>
@@ -395,8 +413,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/simonallenblog/2018/07/28/2018ITMAN-JS-Day01/" rel="prev" title="克服JS奇怪的部分：Day01 前言">
-                克服JS奇怪的部分：Day01 前言 <i class="fa fa-chevron-right"></i>
+              <a href="/simonallenblog/2018/07/29/2018ITMAN-JS-Day07/" rel="prev" title="克服JS奇怪的部分：Day07 型別與運算子">
+                克服JS奇怪的部分：Day07 型別與運算子 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -561,7 +579,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#測試"><span class="nav-number">1.</span> <span class="nav-text">測試</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#廢文一篇"><span class="nav-number">1.0.1.</span> <span class="nav-text">廢文一篇</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#小結"><span class="nav-number">1.</span> <span class="nav-text">小結</span></a></li></ol></div>
             
 
           </div>

@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="IT鐵人賽,JavaScript,學習筆記," />
 
 
 
@@ -77,18 +77,19 @@
 
 
 
-<meta name="description" content="測試廢文一篇">
-<meta name="keywords" content="SimonAllen,前端,前端百工,前端工程師,技術部落格,網頁開發">
+<meta name="keywords" content="IT鐵人賽,JavaScript,學習筆記">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Test">
-<meta property="og:url" content="https://nightwing975.github.io/2018/07/28/Test/index.html">
+<meta property="og:title" content="克服JS奇怪的部分：Day08 運算子的優先性">
+<meta property="og:url" content="https://nightwing975.github.io/2018/07/29/2018ITMAN-JS-Day08/index.html">
 <meta property="og:site_name" content="前端百工">
-<meta property="og:description" content="測試廢文一篇">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2018-07-28T04:55:55.081Z">
+<meta property="og:image" content="https://2.bp.blogspot.com/-AlP52UWbvJc/W1wap5U2eEI/AAAAAAAAIa8/yMTbQ30ZbWQvKnMtZi_ytYOAeLf-t853gCLcBGAs/s1600/2018ITMANJS08.png">
+<meta property="og:image" content="https://i.imgur.com/9j1zxFP.png">
+<meta property="og:image" content="https://i.imgur.com/D6qM7Gc.png">
+<meta property="og:updated_time" content="2018-07-29T04:19:50.243Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Test">
-<meta name="twitter:description" content="測試廢文一篇">
+<meta name="twitter:title" content="克服JS奇怪的部分：Day08 運算子的優先性">
+<meta name="twitter:image" content="https://2.bp.blogspot.com/-AlP52UWbvJc/W1wap5U2eEI/AAAAAAAAIa8/yMTbQ30ZbWQvKnMtZi_ytYOAeLf-t853gCLcBGAs/s1600/2018ITMANJS08.png">
 
 
 
@@ -118,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://nightwing975.github.io/2018/07/28/Test/"/>
+  <link rel="canonical" href="https://nightwing975.github.io/2018/07/29/2018ITMAN-JS-Day08/"/>
 
 
 
 
 
-  <title>Test | 前端百工</title>
+  <title>克服JS奇怪的部分：Day08 運算子的優先性 | 前端百工</title>
   
 
 
@@ -270,7 +271,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://nightwing975.github.io/simonallenblog/2018/07/28/Test/">
+    <link itemprop="mainEntityOfPage" href="https://nightwing975.github.io/simonallenblog/2018/07/29/2018ITMAN-JS-Day08/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Simon Allen">
@@ -287,7 +288,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Test</h1>
+          <h1 class="post-title" itemprop="name headline">克服JS奇怪的部分：Day08 運算子的優先性</h1>
         
 
         <div class="post-meta">
@@ -299,8 +300,8 @@
               
                 <span class="post-meta-item-text">發表於</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2018-07-28T00:12:59+08:00">
-                2018-07-28
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2018-07-29T12:01:02+08:00">
+                2018-07-29
               </time>
             
 
@@ -309,28 +310,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分類於</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/simonallenblog/categories/Testing/" itemprop="url" rel="index">
-                    <span itemprop="name">Testing</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -359,8 +338,42 @@
       
 
       
-        <h1 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h1><h3 id="廢文一篇"><a href="#廢文一篇" class="headerlink" title="廢文一篇"></a>廢文一篇</h3><a id="more"></a>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app = <span class="number">100</span>;</span><br><span class="line">app = app + <span class="number">200</span>;</span><br><span class="line"><span class="built_in">console</span>.log(app);</span><br></pre></td></tr></table></figure>
+        <p><img src="https://2.bp.blogspot.com/-AlP52UWbvJc/W1wap5U2eEI/AAAAAAAAIa8/yMTbQ30ZbWQvKnMtZi_ytYOAeLf-t853gCLcBGAs/s1600/2018ITMANJS08.png" alt=""><br><a id="more"></a></p>
+<blockquote>
+<p>此為筆者 2018IT鐵人賽 筆記備份：<a href="https://ithelp.ithome.com.tw/articles/10191292" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10191292</a></p>
+</blockquote>
+<hr>
+<p>今天繼續來看運算子，昨天提到：運算子可以想成是一個函式，這個函式會將前後兩個參數，傳入對應的JS內建函式中，進行運算並回傳。</p>
+<p>那是什麼決定運算子的執行順序呢？<br>這就看運算子的兩個特性，<code>優先性</code>與<code>相依性</code>來決定。</p>
+<h2 id="優先性"><a href="#優先性" class="headerlink" title="優先性"></a>優先性</h2><blockquote>
+<p>表示哪一個運算子被優先運算，當同一行程式有不只一個運算子時，具高優先性的運算子會先計算，然後依序算到排序等級低的運算子。</p>
+</blockquote>
+<p><del>原來運算子也有分社會階級</del></p>
+<h2 id="相依性"><a href="#相依性" class="headerlink" title="相依性"></a>相依性</h2><blockquote>
+<p>表示運算子被計算的順序，若是左到右計算的運算子就稱為左相依性，右到左則稱為右相依性。</p>
+</blockquote>
+<p>若運算子的優先性都相同，那就是依據<code>相依性</code>來判斷順序，決定是左到右還是右到左運算。</p>
+<p>來看看以下程式碼：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">3</span> + <span class="number">4</span> * <span class="number">5</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a)</span><br></pre></td></tr></table></figure></p>
+<p>現在有<code>+</code>和<code>*</code> 兩個運算子透過<code>=</code>賦值給a<br>JavaScript會先執行哪一個呢?<br>在JavaScript中，<code>*</code>運算子優先性比<code>+</code>還高(先乘除後加減)，所以會等於23，輸出結果看看：<br><img src="https://i.imgur.com/9j1zxFP.png" alt=""></p>
+<p>一般常見的運算子如<code>+-*/</code>(加減乘除)與物件的<code>.</code>運算子都是左相依性的。<br>那有沒有右相依性的運算子呢?</p>
+<p>有的！<br>例如我們常用的<code>=</code>就是，在JS中一個<code>=</code>符號也是運算子，它並不是數學運算上的「等於」，它可以把右邊的東西賦值、指向(或傳址)給左邊的東西。</p>
+<p>例如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Tony = <span class="string">"IronMan"</span></span><br></pre></td></tr></table></figure></p>
+<p><del>X 宣告變數<code>Tony</code>，它和字串<code>IronMan</code>相等。</del><br>O 宣告變數<code>Tony</code>，接著=運算子右邊的字串<code>IronMan</code>賦值給左邊變數<code>Tony</code></p>
+<p>所以<code>=</code>運算子是右相依性。<br>若是要判斷數學上的「<strong>等於</strong>」，左右兩邊是否是一樣的東西，在JS中就要用 <code>==</code> 和 <code>===</code> 來比。</p>
+<p>拉回來，再看看以下程式碼：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">2</span>, b = <span class="number">3</span>, c = <span class="number">4</span>;</span><br><span class="line">a = b = c;</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"><span class="built_in">console</span>.log(b);</span><br><span class="line"><span class="built_in">console</span>.log(c);</span><br></pre></td></tr></table></figure>
+<p>結果會是多少？<br><img src="https://i.imgur.com/D6qM7Gc.png" alt=""></p>
+<p>為何都是4呢？</p>
+<p>看到<code>a = b = c;</code>時，我們習慣從左邊看到右邊。<br>(先看<code>a</code>，再看 <code>=</code>，再看到<code>b</code>，再來看到 <code>=</code>，最後是<code>c</code>)</p>
+<p>但是<code>=</code>運算子是右相依性的，實際上是右到左：<br>1.c先賦值給b<br>2.b再賦值給a</p>
+<p>也就是說，執行時程式可以這樣想：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">2</span>, b = <span class="number">3</span>, c = <span class="number">4</span>;</span><br><span class="line">b = c;</span><br><span class="line"><span class="comment">//此時b也是4了</span></span><br><span class="line"></span><br><span class="line">a = b;</span><br><span class="line"><span class="comment">//此時a也是4了</span></span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"><span class="built_in">console</span>.log(b);</span><br><span class="line"><span class="built_in">console</span>.log(c);</span><br></pre></td></tr></table></figure>
+<p>因此abc自然都是4囉！
+　
+　
+　</p>
+<h2 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h2><p>關於運算子的優先順序，我們可以參考MDN的<a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Operator_Precedence" target="_blank" rel="noopener">運算子優先等級</a><br>裏頭有清楚列出JS對不同運算子的執行順序。</p>
+<p>今天的筆記內容可以參照Udemy課程：<a href="https://www.udemy.com/javascriptjs/" target="_blank" rel="noopener">JavaScript 全攻略：克服JS 的奇怪部分</a>3-22、3-23</p>
 
       
     </div>
@@ -376,6 +389,16 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/simonallenblog/tags/IT鐵人賽/" rel="tag"># IT鐵人賽</a>
+          
+            <a href="/simonallenblog/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/simonallenblog/tags/學習筆記/" rel="tag"># 學習筆記</a>
+          
+        </div>
+      
 
       
       
@@ -385,8 +408,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/simonallenblog/2018/07/27/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/simonallenblog/2018/07/29/2018ITMAN-JS-Day07/" rel="next" title="克服JS奇怪的部分：Day07 型別與運算子">
+                <i class="fa fa-chevron-left"></i> 克服JS奇怪的部分：Day07 型別與運算子
               </a>
             
           </div>
@@ -395,8 +418,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/simonallenblog/2018/07/28/2018ITMAN-JS-Day01/" rel="prev" title="克服JS奇怪的部分：Day01 前言">
-                克服JS奇怪的部分：Day01 前言 <i class="fa fa-chevron-right"></i>
+              <a href="/simonallenblog/2018/07/29/2018ITMAN-JS-Day09/" rel="prev" title="克服JS奇怪的部分：Day09 強制型轉與比較運算子">
+                克服JS奇怪的部分：Day09 強制型轉與比較運算子 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -561,7 +584,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#測試"><span class="nav-number">1.</span> <span class="nav-text">測試</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#廢文一篇"><span class="nav-number">1.0.1.</span> <span class="nav-text">廢文一篇</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#優先性"><span class="nav-number">1.</span> <span class="nav-text">優先性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相依性"><span class="nav-number">2.</span> <span class="nav-text">相依性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小結"><span class="nav-number">3.</span> <span class="nav-text">小結</span></a></li></ol></div>
             
 
           </div>
