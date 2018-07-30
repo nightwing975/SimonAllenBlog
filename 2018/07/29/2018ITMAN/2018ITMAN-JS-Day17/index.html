@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="zh-tw">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/simonallenblog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/simonallenblog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/simonallenblog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/simonallenblog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/simonallenblog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/simonallenblog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/simonallenblog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="網頁前端,IT鐵人賽,JavaScript,學習筆記," />
+
+
+
+
+
+
+
+
+
+
+<meta name="keywords" content="網頁前端,IT鐵人賽,JavaScript,學習筆記">
+<meta property="og:type" content="article">
+<meta property="og:title" content="克服JS奇怪的部分：Day17 傳值by value與傳址by reference">
+<meta property="og:url" content="https://nightwing975.github.io/2018/07/29/2018ITMAN/2018ITMAN-JS-Day17/index.html">
+<meta property="og:site_name" content="前端百工">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://3.bp.blogspot.com/-Ga2-HM8LthU/W1waskr-OrI/AAAAAAAAIbg/zXzHgT1IstAwq6PkE2QVSjwK1chlE2WnACLcBGAs/s1600/2018ITMANJS17.png">
+<meta property="og:image" content="https://i.imgur.com/HboJqo4.png">
+<meta property="og:image" content="https://i.imgur.com/MP3dPRl.png">
+<meta property="og:image" content="https://i.imgur.com/89rzXIq.png">
+<meta property="og:image" content="https://i.imgur.com/B0PNetW.png">
+<meta property="og:image" content="https://i.imgur.com/3waALvf.png">
+<meta property="og:image" content="https://i.imgur.com/vBqBRGv.png">
+<meta property="og:image" content="https://i.imgur.com/Qu7hCuk.png">
+<meta property="og:image" content="https://i.imgur.com/41nwNpc.png">
+<meta property="og:image" content="https://i.imgur.com/GKsPDtb.png">
+<meta property="og:updated_time" content="2018-07-30T07:07:36.273Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="克服JS奇怪的部分：Day17 傳值by value與傳址by reference">
+<meta name="twitter:image" content="https://3.bp.blogspot.com/-Ga2-HM8LthU/W1waskr-OrI/AAAAAAAAIbg/zXzHgT1IstAwq6PkE2QVSjwK1chlE2WnACLcBGAs/s1600/2018ITMANJS17.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/simonallenblog/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://nightwing975.github.io/2018/07/29/2018ITMAN/2018ITMAN-JS-Day17/"/>
+
+
+
+
+
+  <title>克服JS奇怪的部分：Day17 傳值by value與傳址by reference | 前端百工</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-123034328-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/simonallenblog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">前端百工</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">回憶過去、展望未來</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/simonallenblog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/simonallenblog/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/simonallenblog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/simonallenblog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/simonallenblog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nightwing975.github.io/simonallenblog/2018/07/29/2018ITMAN/2018ITMAN-JS-Day17/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Simon Allen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/simonallenblog/images/isMe.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端百工">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">克服JS奇怪的部分：Day17 傳值by value與傳址by reference</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2018-07-29T15:06:54+08:00">
+                2018-07-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/simonallenblog/categories/2018-IT鐵人賽/" itemprop="url" rel="index">
+                    <span itemprop="name">2018 IT鐵人賽</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://3.bp.blogspot.com/-Ga2-HM8LthU/W1waskr-OrI/AAAAAAAAIbg/zXzHgT1IstAwq6PkE2QVSjwK1chlE2WnACLcBGAs/s1600/2018ITMANJS17.png" alt=""><br><a id="more"></a></p>
+<blockquote>
+<p>此為筆者 2018 IT鐵人賽 筆記備份：<a href="https://ithelp.ithome.com.tw/articles/10192342" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10192342</a></p>
+</blockquote>
+<hr>
+<p>今天來看傳值與傳址</p>
+<p><code>call by value</code><strong>傳值</strong>與<code>call by reference</code><strong>傳址</strong>指的是電腦記憶體中的東西，與程式的參照傳遞互動的模式。</p>
+<blockquote>
+<p>call by value</p>
+</blockquote>
+<p>當我們創造變數並給值時，變數會指向值在電腦記憶體中的位置，若我們以這個值為參照，指定另一個變數指向這個值時，電腦會在記憶體中新增(複製)一個新值，<strong>讓後來的這個變數指向新的值</strong>。</p>
+<blockquote>
+<p>在JavaScript裡，布林值、字串、數值、null、undefined都是call by value。</p>
+</blockquote>
+<p>來看看以下程式碼<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">var</span> b;</span><br><span class="line"></span><br><span class="line">b = a;</span><br><span class="line">a = a - <span class="number">70</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'a現在是'</span> + a);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'b現在是'</span> + b);</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>先創造一個變數a並設定進電腦記憶體</li>
+<li>在電腦記憶體創造數值100</li>
+<li>將變數a指向電腦記憶體內的100</li>
+<li>再創造一個變數b並設定進電腦記憶體</li>
+<li>電腦拷貝a的值，在電腦記憶體中設定另一個100</li>
+<li>將變數b指向電腦記憶體內另一個100</li>
+<li>變數a指向的值減去70</li>
+</ol>
+<p>現在變數a是30，變數b是100。</p>
+<p><img src="https://i.imgur.com/HboJqo4.png" alt=""></p>
+<p>挺合理的，a和b指向的值在電腦記憶體裡不一樣，當a修改時，b並不會被影響，這種特性就是call by value。</p>
+<hr>
+<blockquote>
+<p>call by reference</p>
+</blockquote>
+<p>當我們創造變數並給值(物件)時，變數會指向物件在電腦記憶體中的位置，若我們以這個物件為參照，指定另一個變數指向這物件，<strong>這個變數就會指向電腦記憶體中同樣的物件</strong>，不會有新的物件在記憶體中被創造出來。</p>
+<blockquote>
+<p>在JavaScript裡，物件、陣列、函式都是call by reference。</p>
+</blockquote>
+<p>來看看以下程式碼<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> c = &#123; <span class="attr">hello</span> : <span class="string">'安安'</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> d;</span><br><span class="line">d = c;</span><br><span class="line">c.hello = <span class="string">'你好'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(c);</span><br><span class="line"><span class="built_in">console</span>.log(d);</span><br></pre></td></tr></table></figure></p>
+<p>如果用上面a、b的例子(call by value)來看c、d，那麼：<br><code>console.log(c)</code>應該是顯示出<code>{ hello : &#39;你好&#39; }</code><br><code>console.log(d)</code>應該是顯示出<code>{ hello : &#39;安安&#39; }</code></p>
+<p>畢竟d和c指向的記憶體物件應該不一樣，彼此會互不影響，來看看結果</p>
+<p><img src="https://i.imgur.com/MP3dPRl.png" alt=""></p>
+<p>疑?兩個都一樣?</p>
+<p>當我們給變數一個物件，其實賦予變數<strong>指向這個物件在電腦記憶體的位址</strong>，而<code>d = c</code>，變數d也指向 <strong>同一個物件</strong>，<strong>同一個該物件在記憶體的位址</strong>。</p>
+<p>當<code>c.hello = &#39;你好&#39;</code>時，c指向的物件，hello屬性變成’你好’，因為d指向的物件和c是同一個，d自然也是<code>{ hello : &#39;你好&#39; }</code>囉。</p>
+<p>承接程式碼，若用函式傳參數(物件)，結果也是一樣的<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">changeHello</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">	obj.hello = <span class="string">'天氣真好'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">changeHello(d); </span><br><span class="line"><span class="built_in">console</span>.log(c.hello);</span><br><span class="line"><span class="built_in">console</span>.log(d.hello);</span><br></pre></td></tr></table></figure></p>
+<p>上面說過，物件是<code>by reference</code>，c、d都是指向記憶體中的同一個物件，結果自然是：</p>
+<p><img src="https://i.imgur.com/89rzXIq.png" alt=""></p>
+<p>兩個都一樣</p>
+<p>另一個例子：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> e = &#123; <span class="attr">hello</span> : <span class="string">'安安'</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> f = &#123; <span class="attr">hello</span> : <span class="string">'安安'</span> &#125;;</span><br><span class="line">e.hello = <span class="string">'哎呀'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(e);</span><br><span class="line"><span class="built_in">console</span>.log(f);</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/B0PNetW.png" alt=""><br>疑？按照上面的說明，此時e和f應該都是<code>{ hello : &#39;哎呀&#39; }</code>才對啊？</p>
+<p>這是因為，雖然他們的值字面上看一樣，但在電腦記憶體位置中，這兩個物件在記憶體中是獨立分開的，<code>=</code>運算子會建立一個新的命名空間，而且用到了 <strong>物件實體語法</strong>來創造物件，是故e和f指向各自指向不同的記憶體位置，彼此自然不影響囉。</p>
+<hr>
+<p>這邊再給大家看看call by value和call by reference的差別</p>
+<h2 id="call-by-value"><a href="#call-by-value" class="headerlink" title="call by value"></a>call by value</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> byValue1 = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">var</span> byValue2 = byValue1;</span><br><span class="line"><span class="keyword">var</span> byValue3 = byValue1;</span><br><span class="line"><span class="keyword">var</span> byValue4 = byValue1;</span><br><span class="line"><span class="built_in">console</span>.log(byValue1,byValue2,byValue3,byValue4);</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/3waALvf.png" alt=""></p>
+<p>都是100<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">byValue1 = byValue1 - <span class="number">30</span>;</span><br><span class="line"><span class="built_in">console</span>.log(byValue1,byValue2,byValue3,byValue4);</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/vBqBRGv.png" alt=""></p>
+<p>只有byValue1的值受到了影響，這代表byValue1、byValue2、byValue3、byValue4指向的數值都是電腦記憶體中獨立分開的值，所以彼此互不影響。</p>
+<h2 id="call-by-reference"><a href="#call-by-reference" class="headerlink" title="call by reference"></a>call by reference</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1 = &#123; <span class="attr">ByReference</span> : <span class="number">100</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> obj2 = obj1;</span><br><span class="line"><span class="keyword">var</span> obj3 = obj1;</span><br><span class="line"><span class="keyword">var</span> obj4 = obj1;</span><br><span class="line"><span class="built_in">console</span>.log(obj1,obj2,obj3,obj4);</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/Qu7hCuk.png" alt=""></p>
+<p>現在電腦記憶體中的<code>{ByReference:100}</code>其實只有一個，只是同時4個變數指向它。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">obj3.ByReference = obj3.ByReference - <span class="number">30</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj1,obj2,obj3,obj4);</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/41nwNpc.png" alt=""></p>
+<p>變數obj1、obj2、obj3、obj4都指向同一記憶體內的物件，所以透過變數obj3去修改物件，全部指向它的變數都受影響。</p>
+<hr>
+<p>最後，來加碼分享面試時有被考到的題目，當時已經知道<code>by value</code>與<code>by reference</code>的概念，但還是被陷阱坑到。</p>
+<h2 id="求a-x和b-x，console分別顯示出來的內容"><a href="#求a-x和b-x，console分別顯示出來的內容" class="headerlink" title="求a.x和b.x，console分別顯示出來的內容"></a>求a.x和b.x，console分別顯示出來的內容</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123; <span class="attr">n</span> : <span class="number">1</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> b = a;</span><br><span class="line">a.x = a = &#123; <span class="attr">n</span> : <span class="number">2</span> &#125;;</span><br><span class="line"><span class="built_in">console</span>.log(a.x)</span><br><span class="line"><span class="built_in">console</span>.log(b.x)</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h3><p>可以分三部分來看</p>
+<h4 id="第一部分"><a href="#第一部分" class="headerlink" title="第一部分"></a>第一部分</h4><ul>
+<li>宣告變數a、b</li>
+<li>變數a指向<code>{ n : 1 }</code></li>
+<li><code>var b = a;</code>，變數b也指向變數a指向的<code>{ n : 1 }</code></li>
+</ul>
+<blockquote>
+<p>因為by reference的關係，a、b此時都指向憶體中的同一個<code>{ n : 1 }</code></p>
+</blockquote>
+<h4 id="第二部分"><a href="#第二部分" class="headerlink" title="第二部分"></a>第二部分</h4><ul>
+<li><code>a.x = a = { n : 2 }</code></li>
+</ul>
+<p><code>=</code>運算子是右相依性，所以這行乍看是先從右邊看到左邊….嗎？<br>別忘記決定運算子順序的是優先性與相依性，可以參考MDN的<a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Operator_Precedence" target="_blank" rel="noopener">運算子優先性表格</a></p>
+<blockquote>
+<p><code>.</code>運算子的優先性高於<code>=</code>運算子</p>
+</blockquote>
+<p>所以先看最左邊的<code>a.x</code>，但因為a物件<code>{ n : 1 }</code>並沒有x屬性的存在，<br>於是就創造x這個屬性，<code>a.x</code>值<code>是undefined</code>。</p>
+<blockquote>
+<p>a、b此時共同指向的物件變成<code>{ n : 1 , x : undefined }</code></p>
+</blockquote>
+<p>然後才因為<code>=</code>運算子，由右看到左。</p>
+<ul>
+<li><code>a = { n : 2 }</code></li>
+</ul>
+<blockquote>
+<p>a改指向記憶體中的新物件<code>{n:2}</code>，因為by reference的關係，此時b仍指向記憶體中的物件<br><code>{ n : 1 , x : undefined }</code>。</p>
+</blockquote>
+<ul>
+<li><code>a.x = a</code></li>
+</ul>
+<p>將a現在指向的物件<code>{ n : 2 }</code>賦予給<code>a.x</code>，這邊的<code>a.x</code>其實是先前與b一同指向的<br><code>{ n : 1 , x : undefined }</code>的x屬性，也就是<code>undefined</code>，<br>此時<code>{ n : 1 , x : undefined }</code>這個物件變成<code>{ n : 1 , x : { n : 2 } }</code>。</p>
+<blockquote>
+<p>現在的狀況<br>a指向<code>{ n : 2 }</code><br>b指向<code>{ n : 1 , x : { n : 2 } }</code></p>
+</blockquote>
+<h4 id="第三部分"><a href="#第三部分" class="headerlink" title="第三部分"></a>第三部分</h4><ul>
+<li><code>console.log(a.x)</code><br>這個時候的a指向<code>{n : 2 }</code>，console.log卻是要看<code>a.x</code>，<code>{ n : 2 }</code>並沒有屬性x，於是創造x屬性，a物件變成是<code>{n : 2 , x : undefined }</code>，<code>a.x</code>就是<code>undefined</code>囉!</li>
+</ul>
+<ul>
+<li><code>console.log(b.x)</code><br>這個時候的b指向<code>{ n : 1 , x : { n : 2 } }</code>，<code>b.x</code>自然是<code>{ n : 2 }</code></li>
+</ul>
+<p>瀏覽器console，看看結果：<br><img src="https://i.imgur.com/GKsPDtb.png" alt=""></p>
+<p>　
+　
+　</p>
+<h2 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h2><p>JS同時具有<code>call by value</code>和<code>call by reference</code>的特性，這種傳遞特性稱作<code>call by sharing</code>。理解這種特性是很重要的，畢竟<del>面試會考</del>它是「 <strong>物件導向語言</strong> 」啊，瞭解JS物件、函式的<code>call by reference</code>，可以幫助我們避掉一些開發上的bug。</p>
+<p>今天的筆記內容可以參照Udemy課程：<a href="https://www.udemy.com/javascriptjs/" target="_blank" rel="noopener">JavaScript 全攻略：克服JS 的奇怪部分</a>4-36</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/simonallenblog/tags/網頁前端/" rel="tag"># 網頁前端</a>
+          
+            <a href="/simonallenblog/tags/IT鐵人賽/" rel="tag"># IT鐵人賽</a>
+          
+            <a href="/simonallenblog/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/simonallenblog/tags/學習筆記/" rel="tag"># 學習筆記</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/simonallenblog/2018/07/29/2018ITMAN/2018ITMAN-JS-Day16/" rel="next" title="克服JS奇怪的部分：Day16 函式陳述句與函式表示式">
+                <i class="fa fa-chevron-left"></i> 克服JS奇怪的部分：Day16 函式陳述句與函式表示式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/simonallenblog/2018/07/29/2018ITMAN/2018ITMAN-JS-Day18/" rel="prev" title="克服JS奇怪的部分：Day18 物件、函式與「this」">
+                克服JS奇怪的部分：Day18 物件、函式與「this」 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/simonallenblog/images/isMe.jpg"
+                alt="Simon Allen" />
+            
+              <p class="site-author-name" itemprop="name">Simon Allen</p>
+              <p class="site-description motion-element" itemprop="description">為信仰的事物奮鬥不懈</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/simonallenblog/archives/">
+              
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/simonallenblog/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分類</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/simonallenblog/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">標籤</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/allen8101070/" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:allen8101070@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://codepen.io/SimonAllen/" target="_blank" title="Codepen">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Codepen</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/" target="_blank" title="Facebook">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>Facebook</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#call-by-value"><span class="nav-number">1.</span> <span class="nav-text">call by value</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#call-by-reference"><span class="nav-number">2.</span> <span class="nav-text">call by reference</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求a-x和b-x，console分別顯示出來的內容"><span class="nav-number">3.</span> <span class="nav-text">求a.x和b.x，console分別顯示出來的內容</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解析"><span class="nav-number">3.1.</span> <span class="nav-text">解析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一部分"><span class="nav-number">3.1.1.</span> <span class="nav-text">第一部分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二部分"><span class="nav-number">3.1.2.</span> <span class="nav-text">第二部分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第三部分"><span class="nav-number">3.1.3.</span> <span class="nav-text">第三部分</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小結"><span class="nav-number">4.</span> <span class="nav-text">小結</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Simon Allen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/simonallenblog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/simonallenblog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/simonallenblog/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/simonallenblog/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/simonallenblog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/simonallenblog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/simonallenblog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="zh-tw">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/simonallenblog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/simonallenblog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/simonallenblog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/simonallenblog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/simonallenblog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/simonallenblog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/simonallenblog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="網頁前端,IT鐵人賽,JavaScript,學習筆記," />
+
+
+
+
+
+
+
+
+
+
+<meta name="keywords" content="網頁前端,IT鐵人賽,JavaScript,學習筆記">
+<meta property="og:type" content="article">
+<meta property="og:title" content="克服JS奇怪的部分：Day16 函式陳述句與函式表示式">
+<meta property="og:url" content="https://nightwing975.github.io/2018/07/29/2018ITMAN/2018ITMAN-JS-Day16/index.html">
+<meta property="og:site_name" content="前端百工">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://1.bp.blogspot.com/-2Fdw7ZuXIms/W1war-PDghI/AAAAAAAAIbY/BB05yGZPKKcTWd0w8lDueHsJjYnD4jgvgCLcBGAs/s1600/2018ITMANJS16.png">
+<meta property="og:image" content="https://i.imgur.com/KEixJZ5.png">
+<meta property="og:image" content="https://i.imgur.com/qP9G5Wj.png">
+<meta property="og:image" content="https://i.imgur.com/Mv7lW42.png">
+<meta property="og:image" content="https://i.imgur.com/7qNlAUe.png">
+<meta property="og:image" content="https://i.imgur.com/nyixNzG.png">
+<meta property="og:image" content="https://i.imgur.com/FPnwYxK.png">
+<meta property="og:image" content="https://i.imgur.com/lngOhIw.png">
+<meta property="og:updated_time" content="2018-07-30T07:07:36.273Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="克服JS奇怪的部分：Day16 函式陳述句與函式表示式">
+<meta name="twitter:image" content="https://1.bp.blogspot.com/-2Fdw7ZuXIms/W1war-PDghI/AAAAAAAAIbY/BB05yGZPKKcTWd0w8lDueHsJjYnD4jgvgCLcBGAs/s1600/2018ITMANJS16.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/simonallenblog/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://nightwing975.github.io/2018/07/29/2018ITMAN/2018ITMAN-JS-Day16/"/>
+
+
+
+
+
+  <title>克服JS奇怪的部分：Day16 函式陳述句與函式表示式 | 前端百工</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-123034328-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/simonallenblog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">前端百工</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">回憶過去、展望未來</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/simonallenblog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/simonallenblog/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/simonallenblog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/simonallenblog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/simonallenblog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nightwing975.github.io/simonallenblog/2018/07/29/2018ITMAN/2018ITMAN-JS-Day16/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Simon Allen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/simonallenblog/images/isMe.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端百工">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">克服JS奇怪的部分：Day16 函式陳述句與函式表示式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2018-07-29T15:06:44+08:00">
+                2018-07-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/simonallenblog/categories/2018-IT鐵人賽/" itemprop="url" rel="index">
+                    <span itemprop="name">2018 IT鐵人賽</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://1.bp.blogspot.com/-2Fdw7ZuXIms/W1war-PDghI/AAAAAAAAIbY/BB05yGZPKKcTWd0w8lDueHsJjYnD4jgvgCLcBGAs/s1600/2018ITMANJS16.png" alt=""><br><a id="more"></a></p>
+<blockquote>
+<p>此為筆者 2018 IT鐵人賽 筆記備份：<a href="https://ithelp.ithome.com.tw/articles/10192146" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10192146</a></p>
+</blockquote>
+<hr>
+<p>今天來看<code>Function Statement</code>(函式陳述句)與<code>Function Expression</code>(函式表達式、表示式)</p>
+<p>等等…<code>Statement</code>與<code>Expression</code>又是什麼東西呢?</p>
+<blockquote>
+<p>Statement</p>
+</blockquote>
+<p>程式碼的單位，這段程式碼不會產生一個值</p>
+<blockquote>
+<p>Expression</p>
+</blockquote>
+<p>程式碼的單位，這段程式碼最終會產生(回傳)一個值，而這個值不一定會被開發者賦予變數。</p>
+<p>看看以下程式碼<br>我們先宣告一個變數a，然後直接在瀏覽器console做後續動作<br><img src="https://i.imgur.com/KEixJZ5.png" alt=""></p>
+<ul>
+<li>輸入<code>a = 3</code>，瀏覽器console回傳3，這代表這段程式碼是<code>Expression</code> </li>
+<li>輸入<code>10 + 5</code>，瀏覽器console回傳15，它也是<code>Expression</code></li>
+<li>輸入<code>a === 3</code>，回傳true(成立)，它也是<code>Expression</code></li>
+<li>若我們直接用物件實體語法創造物件，將物件指向變數<code>a</code>，瀏覽器console也回傳一個物件，它也是一個<code>Expression</code></li>
+</ul>
+<p>接著看看以下程式碼<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(a === <span class="number">3</span>)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>if()</code>的<code>()</code>，需要布林值<code>true</code>、<code>false</code>來決定這個程式判斷會不會成立，故<code>()</code>裡面會放表示式，但<code>if(){}</code>這段程式碼本身是陳述句，本身不會回傳值，我們也無法將它賦予、指向給變數。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app = <span class="keyword">if</span>(a === <span class="number">3</span>)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/qP9G5Wj.png" alt=""></p>
+<p>現在拉回來函式，函數的定義也有分為<code>Statement</code>與<code>Expression</code></p>
+<p>例如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cat</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"貓咪"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>當電腦在執行轉譯的JS程式碼時，上面這段程式並不會報錯，因為它是<code>Function Statement</code>函式陳述句，程式碼本身不會回傳值，除非我們呼叫執行使其執行。</p>
+<p>而這種先宣告函式定義，等待我們(開發者)呼叫執行的寫法，也稱為<code>Function Declaration</code>函式宣告，它會在電腦的創造階段它就會被設定進記憶體，發生<strong>提升</strong><code>Hoisting</code>現象。</p>
+<p>我們可以這樣寫不會報錯<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cat()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cat</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"貓咪"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/Mv7lW42.png" alt=""></p>
+<p>呼叫執行cat的<code>cat()</code>雖然寫在函式定義上面，但電腦在<code>創造階段</code>就先把函式設定進記憶體，在執行階段呼叫其內容，創造其函式執行環境，關於<code>Hoisting</code>可以參考第三天的<a href="https://ithelp.ithome.com.tw/articles/10190700" target="_blank" rel="noopener">筆記</a>。</p>
+<p>由於函式就是物件，<code>cat()</code>這段程式碼，還可以理解成透過cat去查找在記憶體中的function，找到名子NAME屬性cat的函式物件，接著執行其程式屬性<code>console.log(&quot;貓咪&quot;);</code>，關於這部分，可以參考昨天筆記。</p>
+<p>那<code>Function Expression</code>函式表示式呢？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> dog = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"狗"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dog();</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/7qNlAUe.png" alt=""><br>當程式執行到<code>=</code>運算子右邊的程式碼，<strong>才建立這個函式物件</strong>，將其指向變數dog，並且它可以當成一個<strong>值</strong>，所以是<code>Function Expression</code>表示式。</p>
+<p>這裡的函式並沒有名子，也就是說它是一個<code>匿名函式</code>，<code>var dog = function()</code>可以理解是將這個逆名函式在記憶體中的<code>位址</code>傳給變數dog。</p>
+<p>而呼叫執行它的程式碼<code>dog()</code>，則可以理解是透過變數dog有的地址，去呼叫查找在記憶體中的該匿名函式，並執行其程式屬性<code>console.log(&quot;狗&quot;);</code></p>
+<p>那這樣寫呢?</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dog();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> dog = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"狗"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/nyixNzG.png" alt=""></p>
+<p>變數會在創造階段被設定進記憶體，所以程式碼實際上會像這樣：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> dog</span><br><span class="line">dog();</span><br><span class="line"></span><br><span class="line">dog = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"狗"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>發生了 <strong>提升</strong>現象，呼叫函式時變數dog其實沒有函式，自然報錯<code>dog is not a function</code></p>
+<p>而函式在呼叫執行時，也可以傳參數進去。<br>接續上面的內容，這裡建一個<code>Function Statement</code><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">log</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然後也可以把<code>Function Expression</code>表示式當成參數傳進去</p>
+<p>透過變數<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">log(dog)</span><br></pre></td></tr></table></figure></p>
+<p>或直接放入匿名函式<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">log(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"狗"</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>結果<br><img src="https://i.imgur.com/FPnwYxK.png" alt=""></p>
+<p>若是想要直接執行這個傳進去的匿名函式，原本的Function Statement可以改成這樣<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">log</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">	a();</span><br><span class="line">&#125;</span><br><span class="line">log(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"狗"</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/lngOhIw.png" alt="">
+　
+　
+　
+　</p>
+<h2 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h2><p>今天複習了<code>Statement</code>與<code>Expression</code>的差別，也複習了函式表示式、函式陳述句，瞭解函式可以當參數傳入其他函式。<br>明天來看JavaScript的 <strong>傳值</strong><code>by value</code>與 <strong>傳址</strong><code>by reference</code>。</p>
+<p>今天的筆記內容可以參照Udemy課程：<a href="https://www.udemy.com/javascriptjs/" target="_blank" rel="noopener">JavaScript 全攻略：克服JS 的奇怪部分</a>4-35</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/simonallenblog/tags/網頁前端/" rel="tag"># 網頁前端</a>
+          
+            <a href="/simonallenblog/tags/IT鐵人賽/" rel="tag"># IT鐵人賽</a>
+          
+            <a href="/simonallenblog/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/simonallenblog/tags/學習筆記/" rel="tag"># 學習筆記</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/simonallenblog/2018/07/29/2018ITMAN/2018ITMAN-JS-Day14/" rel="next" title="克服JS奇怪的部分：Day14 JSON與物件實體">
+                <i class="fa fa-chevron-left"></i> 克服JS奇怪的部分：Day14 JSON與物件實體
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/simonallenblog/2018/07/29/2018ITMAN/2018ITMAN-JS-Day17/" rel="prev" title="克服JS奇怪的部分：Day17 傳值by value與傳址by reference">
+                克服JS奇怪的部分：Day17 傳值by value與傳址by reference <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/simonallenblog/images/isMe.jpg"
+                alt="Simon Allen" />
+            
+              <p class="site-author-name" itemprop="name">Simon Allen</p>
+              <p class="site-description motion-element" itemprop="description">為信仰的事物奮鬥不懈</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/simonallenblog/archives/">
+              
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/simonallenblog/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分類</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/simonallenblog/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">標籤</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/allen8101070/" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:allen8101070@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://codepen.io/SimonAllen/" target="_blank" title="Codepen">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Codepen</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/" target="_blank" title="Facebook">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>Facebook</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#小結"><span class="nav-number">1.</span> <span class="nav-text">小結</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Simon Allen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/simonallenblog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/simonallenblog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/simonallenblog/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/simonallenblog/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/simonallenblog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/simonallenblog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/simonallenblog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

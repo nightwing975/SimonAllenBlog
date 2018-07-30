@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="zh-tw">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/simonallenblog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/simonallenblog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/simonallenblog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/simonallenblog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/simonallenblog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/simonallenblog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/simonallenblog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="網頁前端,IT鐵人賽,JavaScript,學習筆記," />
+
+
+
+
+
+
+
+
+
+
+<meta name="keywords" content="網頁前端,IT鐵人賽,JavaScript,學習筆記">
+<meta property="og:type" content="article">
+<meta property="og:title" content="克服JS奇怪的部分：Day18 物件、函式與「this」">
+<meta property="og:url" content="https://nightwing975.github.io/2018/07/29/2018ITMAN/2018ITMAN-JS-Day18/index.html">
+<meta property="og:site_name" content="前端百工">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://4.bp.blogspot.com/-UMpYJ2Vufko/W1wasZPOmzI/AAAAAAAAIbc/FBHaaHgtO7AOzrwZ2_IJuscqyM-F2JD0ACLcBGAs/s1600/2018ITMANJS18.png">
+<meta property="og:image" content="https://i.imgur.com/8Wn26Mt.png">
+<meta property="og:image" content="https://i.imgur.com/1a2j2rJ.png">
+<meta property="og:image" content="https://i.imgur.com/IEcIPS1.png">
+<meta property="og:image" content="https://i.imgur.com/SMok0K6.png">
+<meta property="og:image" content="https://i.imgur.com/ltghdgP.png">
+<meta property="og:image" content="https://i.imgur.com/WCOblPS.png">
+<meta property="og:image" content="https://i.imgur.com/4sgFUtU.png">
+<meta property="og:image" content="https://i.imgur.com/SMeBCVj.png">
+<meta property="og:image" content="https://i.imgur.com/hgi725q.png">
+<meta property="og:updated_time" content="2018-07-30T07:07:36.273Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="克服JS奇怪的部分：Day18 物件、函式與「this」">
+<meta name="twitter:image" content="https://4.bp.blogspot.com/-UMpYJ2Vufko/W1wasZPOmzI/AAAAAAAAIbc/FBHaaHgtO7AOzrwZ2_IJuscqyM-F2JD0ACLcBGAs/s1600/2018ITMANJS18.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/simonallenblog/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://nightwing975.github.io/2018/07/29/2018ITMAN/2018ITMAN-JS-Day18/"/>
+
+
+
+
+
+  <title>克服JS奇怪的部分：Day18 物件、函式與「this」 | 前端百工</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-123034328-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/simonallenblog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">前端百工</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">回憶過去、展望未來</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/simonallenblog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/simonallenblog/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/simonallenblog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/simonallenblog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/simonallenblog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nightwing975.github.io/simonallenblog/2018/07/29/2018ITMAN/2018ITMAN-JS-Day18/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Simon Allen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/simonallenblog/images/isMe.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端百工">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">克服JS奇怪的部分：Day18 物件、函式與「this」</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2018-07-29T15:06:57+08:00">
+                2018-07-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/simonallenblog/categories/2018-IT鐵人賽/" itemprop="url" rel="index">
+                    <span itemprop="name">2018 IT鐵人賽</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://4.bp.blogspot.com/-UMpYJ2Vufko/W1wasZPOmzI/AAAAAAAAIbc/FBHaaHgtO7AOzrwZ2_IJuscqyM-F2JD0ACLcBGAs/s1600/2018ITMANJS18.png" alt=""><br><a id="more"></a></p>
+<blockquote>
+<p>此為筆者 2018 IT鐵人賽 筆記備份：<a href="https://ithelp.ithome.com.tw/articles/10192737" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10192737</a></p>
+</blockquote>
+<hr>
+<p>今天來看看<code>this</code></p>
+<p>JavaScript在建立執行環境時，不論是全域、區域執行環境，在創造時會一併建立一個變數 <code>this</code>。而this會指向呼叫函式的執行環境，更進一步的說，this會指向函式目前所在物件。</p>
+<p>如果我們直接這麼寫，這段程式碼的this會指向誰?<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/8Wn26Mt.png" alt=""></p>
+<p>我們在全域執行環境呼叫this，此時它會指向全域物件，也就是window</p>
+<p>那這樣呢？<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> b = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">a();</span><br><span class="line">b();</span><br></pre></td></tr></table></figure></p>
+<p>呼叫a、b函式，電腦創造函式a、b的執行環境，此時a、b函式內的this也一併被創造出來，那this會分別指向誰呢？</p>
+<p><img src="https://i.imgur.com/1a2j2rJ.png" alt=""></p>
+<p>還蠻合理的，畢竟<code>a()</code>、<code>b()</code>也視同<code>window.a()</code>、<code>window.b()</code>，這代表不管用<code>函式表示式</code>或<code>函式陳述句</code>，只要在全域定義、呼叫創造其執行環境，這時的this會指向全域物件。</p>
+<p>但也因為函式a、b內的this指向全域物件，我們在函式a、b內使用this，就可以影響全域物件的內容(屬性)，這樣很容易與我們在全域宣告的變數名稱相衝到。</p>
+<p>例如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tomato = <span class="string">"牛番茄"</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.tomato = <span class="string">"聖女番茄"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">a();</span><br><span class="line"><span class="built_in">console</span>.log(tomato)</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/IEcIPS1.png" alt=""></p>
+<ol>
+<li><p>我在全域宣告一個變數tomato，賦值<code>&quot;牛番茄&quot;</code>。</p>
+</li>
+<li><p>呼叫函式a時，函式a的執行環境被創造出來，同時函式a的執行環境也創造了它自己的this。</p>
+</li>
+<li><p>賦值<code>&quot;聖女番茄&quot;</code>給函式a的this.tomato，因為函式a自己的this指向全域，這下可好了，在全域的變數tomato，其值被蓋過從<code>&quot;牛番茄&quot;</code>變成了<code>&quot;聖女番茄&quot;</code>。</p>
+</li>
+</ol>
+<p>所以使用this必須要小心，得清楚它指向的物件對象是誰，否則可能會產生一些開發上的bug。</p>
+<p>若是物件的方法(Method)裡的this呢？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> c = &#123;</span><br><span class="line">	name: <span class="string">"我是物件c"</span>,</span><br><span class="line">	log: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">c.log();</span><br></pre></td></tr></table></figure>
+<p><code>c.log()</code>的結果是？</p>
+<p><img src="https://i.imgur.com/SMok0K6.png" alt=""></p>
+<p>當函式變成連結到物件的方法，函式的this關鍵字就會指向這個物件。<br>是故this指向了c這個物件，合理！</p>
+<p>可以這樣衍生<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> c = &#123;</span><br><span class="line">	name: <span class="string">"我是物件c"</span>,</span><br><span class="line">	log: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = <span class="string">"更新物件c"</span></span><br><span class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">c.log();</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/ltghdgP.png" alt=""></p>
+<p>可以看到物件的name，其值被替換成<code>更新物件c</code>，這意味著我們在開發時，可以使用方法中的this，影響包住這個方法的物件，或是取用同一物件的其他方法或屬性。</p>
+<p>然而，JS的this特性，有一點很奇怪，常常被認定是bug</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> c = &#123;</span><br><span class="line">	name: <span class="string">"我是物件c"</span>,</span><br><span class="line">	log: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = <span class="string">"更新物件c"</span>;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">var</span> otherLog= <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">			<span class="keyword">this</span>.name = e;</span><br><span class="line">		&#125;</span><br><span class="line">		otherLog(<span class="string">"現在第二次更新c"</span>);</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">c.log();</span><br></pre></td></tr></table></figure>
+<p>上面這一段程式碼，在執行<code>c.log()</code>時，預期會看到瀏覽器console顯示出兩次<code>this.name</code>：<br>第一個<code>this.name</code>會是<code>更新物件c</code><br>第二個<code>this.name</code>會是<code>現在第二次更新c</code></p>
+<p>預期看到這樣，那結果會是？</p>
+<p><img src="https://i.imgur.com/WCOblPS.png" alt=""></p>
+<p>字串<code>&quot;現在第二次更新c&quot;</code>，確實被傳入<code>otherLog()</code>，也改變了<code>this.name</code>，那為何console印出來的都是<code>更新物件c</code>？</p>
+<p>這是因為，log方法裡的函式表達式otherLog，其this指向了<code>全域物件</code>！，我們可以從瀏覽器console來檢查現在的window。</p>
+<p><img src="https://i.imgur.com/4sgFUtU.png" alt=""></p>
+<p>有看到物件c了，但還是沒看到<code>現在第二次更新c</code>這段文字，再往下找找看window 。</p>
+<p><img src="https://i.imgur.com/SMeBCVj.png" alt=""></p>
+<p>可以看到現在window多了一個屬性name，其值為<code>現在第二次更新c</code>，這代表</p>
+<blockquote>
+<p>在函式內定義的函式，裏頭函式的this會指向全域物件。</p>
+</blockquote>
+<p>通常開發者會用個方法避免這種bug，那就是 <strong>用個變數保存this</strong></p>
+<p>來看看以下程式碼<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> c = &#123;</span><br><span class="line">	name: <span class="string">"我是物件c"</span>,</span><br><span class="line">	log: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line">		<span class="keyword">this</span>.name = <span class="string">"更新物件c"</span>;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">var</span> otherLog= <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">			self.name = e;</span><br><span class="line">		&#125;</span><br><span class="line">		otherLog(<span class="string">"現在第二次更新c"</span>);</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">c.log();</span><br></pre></td></tr></table></figure></p>
+<p>和上一個例子差不多，只是這次在log函式內寫了這一段<code>var self = this</code>，並且將log裡面的otherLog函式，原本的<code>this.name = e</code>改成<code>self.name = e</code>。</p>
+<p>在第五天的<a href="https://ithelp.ithome.com.tw/articles/10190998" target="_blank" rel="noopener">筆記</a>提到，當內部執行環境找不到指定的東西時，便會向外查找，一層一層找，直到找到全域為止。</p>
+<p>現在otherLog函式內沒有self的存在，程式碼卻寫了<code>self.name</code>，於是電腦便往外部執行環境找，在物件c的方法：log函式內找到了self，這個self保存的this指向物件c(別忘記物件函式是<code>by reference</code>)，也就是說，用這種保存this的方式，可以讓物件方法(函式)內的函式，也能存取該物件的屬性。</p>
+<p>所以上面這段改良版程式碼，結果是：</p>
+<p><img src="https://i.imgur.com/hgi725q.png" alt="">
+　
+　
+　
+　</p>
+<h2 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h2><p>this關鍵字是JavaScript很常被拿來討論的特性，並不是說不會this就無法開發下去，除了利用<code>外部查找</code>特性，上面的<code>this.name</code>和<code>self.name</code>改成<code>c.name</code>也是通的，但this確實給予開發者很大的彈性，理解其特性對我們的開發會很有效率。</p>
+<p>若是ES6的箭頭函式，其this的狀況又不一樣，很常會需要先在外部環境用變數保存this，在箭頭函式內再調用，這30天的筆記基本上是照克服JS的奇怪部分去記，箭頭函式的部分就先略過囉。</p>
+<p>今天的筆記內容可以參照Udemy課程：<a href="https://www.udemy.com/javascriptjs/" target="_blank" rel="noopener">JavaScript 全攻略：克服JS的奇怪部分</a>4-37</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/simonallenblog/tags/網頁前端/" rel="tag"># 網頁前端</a>
+          
+            <a href="/simonallenblog/tags/IT鐵人賽/" rel="tag"># IT鐵人賽</a>
+          
+            <a href="/simonallenblog/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/simonallenblog/tags/學習筆記/" rel="tag"># 學習筆記</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/simonallenblog/2018/07/29/2018ITMAN/2018ITMAN-JS-Day17/" rel="next" title="克服JS奇怪的部分：Day17 傳值by value與傳址by reference">
+                <i class="fa fa-chevron-left"></i> 克服JS奇怪的部分：Day17 傳值by value與傳址by reference
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/simonallenblog/2018/07/29/2018ITMAN/2018ITMAN-JS-Day19/" rel="prev" title="克服JS奇怪的部分：Day19 陣列、arguments、spread與分號">
+                克服JS奇怪的部分：Day19 陣列、arguments、spread與分號 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/simonallenblog/images/isMe.jpg"
+                alt="Simon Allen" />
+            
+              <p class="site-author-name" itemprop="name">Simon Allen</p>
+              <p class="site-description motion-element" itemprop="description">為信仰的事物奮鬥不懈</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/simonallenblog/archives/">
+              
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/simonallenblog/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分類</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/simonallenblog/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">標籤</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/allen8101070/" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:allen8101070@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://codepen.io/SimonAllen/" target="_blank" title="Codepen">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Codepen</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/" target="_blank" title="Facebook">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>Facebook</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#小結"><span class="nav-number">1.</span> <span class="nav-text">小結</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Simon Allen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/simonallenblog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/simonallenblog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/simonallenblog/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/simonallenblog/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/simonallenblog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/simonallenblog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/simonallenblog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

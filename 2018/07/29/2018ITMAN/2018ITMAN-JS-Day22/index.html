@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="zh-tw">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/simonallenblog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/simonallenblog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/simonallenblog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/simonallenblog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/simonallenblog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/simonallenblog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/simonallenblog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="網頁前端,IT鐵人賽,JavaScript,學習筆記," />
+
+
+
+
+
+
+
+
+
+
+<meta name="keywords" content="網頁前端,IT鐵人賽,JavaScript,學習筆記">
+<meta property="og:type" content="article">
+<meta property="og:title" content="克服JS奇怪的部分：Day22 Function Factories、閉包與回呼">
+<meta property="og:url" content="https://nightwing975.github.io/2018/07/29/2018ITMAN/2018ITMAN-JS-Day22/index.html">
+<meta property="og:site_name" content="前端百工">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://2.bp.blogspot.com/-HDyRxmLiOnA/W1wat6uQN7I/AAAAAAAAIb0/Ft7ChmeglBofg9xz7vhZhyiDG8SHaS7TQCLcBGAs/s1600/2018ITMANJS22.png">
+<meta property="og:image" content="https://i.imgur.com/QNOrpvm.png">
+<meta property="og:image" content="https://i.imgur.com/P8J4pr8.png">
+<meta property="og:image" content="https://i.imgur.com/i2LNcQu.png">
+<meta property="og:image" content="https://i.imgur.com/8yNZ38n.png">
+<meta property="og:updated_time" content="2018-07-30T07:07:36.273Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="克服JS奇怪的部分：Day22 Function Factories、閉包與回呼">
+<meta name="twitter:image" content="https://2.bp.blogspot.com/-HDyRxmLiOnA/W1wat6uQN7I/AAAAAAAAIb0/Ft7ChmeglBofg9xz7vhZhyiDG8SHaS7TQCLcBGAs/s1600/2018ITMANJS22.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/simonallenblog/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://nightwing975.github.io/2018/07/29/2018ITMAN/2018ITMAN-JS-Day22/"/>
+
+
+
+
+
+  <title>克服JS奇怪的部分：Day22 Function Factories、閉包與回呼 | 前端百工</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-123034328-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/simonallenblog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">前端百工</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">回憶過去、展望未來</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/simonallenblog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/simonallenblog/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/simonallenblog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/simonallenblog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/simonallenblog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nightwing975.github.io/simonallenblog/2018/07/29/2018ITMAN/2018ITMAN-JS-Day22/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Simon Allen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/simonallenblog/images/isMe.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端百工">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">克服JS奇怪的部分：Day22 Function Factories、閉包與回呼</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2018-07-29T15:07:03+08:00">
+                2018-07-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/simonallenblog/categories/2018-IT鐵人賽/" itemprop="url" rel="index">
+                    <span itemprop="name">2018 IT鐵人賽</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://2.bp.blogspot.com/-HDyRxmLiOnA/W1wat6uQN7I/AAAAAAAAIb0/Ft7ChmeglBofg9xz7vhZhyiDG8SHaS7TQCLcBGAs/s1600/2018ITMANJS22.png" alt=""><br><a id="more"></a></p>
+<blockquote>
+<p>此為筆者 2018 IT鐵人賽 筆記備份：<a href="https://ithelp.ithome.com.tw/articles/10193656" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10193656</a></p>
+</blockquote>
+<hr>
+<p>今天來看Function Factories、閉包與回呼這兩個章節</p>
+<blockquote>
+<p>Function Factories</p>
+</blockquote>
+<p>JS並沒有 <strong>重載函式</strong>的特性，但是可以用函式傳入的參數，在函式裡用if判斷達成類似的效果。<br>例如這樣：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span>(<span class="params">firstname, lastname, language</span>)</span>&#123;</span><br><span class="line">	language = language || <span class="string">'en'</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(language === <span class="string">'en'</span>)&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">'Hello '</span> + firstname + <span class="string">' '</span> + lastname);</span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span>(language === <span class="string">'es'</span>)&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">'Hola '</span> + firstname + <span class="string">' '</span> + lastname);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">hello(<span class="string">'Simon'</span> , <span class="string">'Duke'</span>, <span class="string">'en'</span>)</span><br><span class="line">hello(<span class="string">'Simon'</span> , <span class="string">'Duke'</span>, <span class="string">'es'</span>)</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/QNOrpvm.png" alt=""></p>
+<p>這種作法的缺點是，若函式裡的判斷變多、傳進去的參數變多(光現在就要帶入三個參數..再更多呢？)，那呼叫時的 <strong>易讀性</strong>會降低不少，開發者可以用閉包的特性，修改其內容。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeHello</span>(<span class="params">language</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">firstname , lastname</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>(language === <span class="string">'en'</span>)&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="string">'Hello '</span> + firstname + <span class="string">' '</span> + lastname);</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(language === <span class="string">'es'</span>)&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="string">'Hola '</span> + firstname + <span class="string">' '</span> + lastname);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> englishHello = makeHello(<span class="string">'en'</span>);</span><br><span class="line"><span class="keyword">var</span> spanishHello = makeHello(<span class="string">'es'</span>);</span><br><span class="line"></span><br><span class="line">englishHello(<span class="string">'Simon'</span>, <span class="string">'Duke'</span>)</span><br><span class="line">spanishHello(<span class="string">'Simon'</span>, <span class="string">'Duke'</span>)</span><br></pre></td></tr></table></figure>
+<p>結果是<br><img src="https://i.imgur.com/P8J4pr8.png" alt=""></p>
+<p>說明</p>
+<ol>
+<li>定義一個函式敘述句makeHello</li>
+<li>宣告變數englishHello指向<code>makeHello(&#39;en&#39;);</code>的回傳值(函式)</li>
+</ol>
+<blockquote>
+<p>此時創造makeHello函式執行環境，帶入參數<code>&#39;en&#39;</code>，執行函式內程式，回傳結果給englishHello後，結束函式執行環境，電腦回收多餘記憶體。</p>
+</blockquote>
+<ol start="3">
+<li>宣告變數spanishHello指向<code>makeHello(&#39;es&#39;);</code>的回傳值(函式)</li>
+</ol>
+<blockquote>
+<p>此時創造makeHello函式執行環境，帶入參數<code>&#39;es&#39;</code>，執行函式內程式，回傳結果給spanishHello後，結束函式執行環境，電腦回收多餘記憶體。</p>
+</blockquote>
+<ol start="4">
+<li>呼叫執行變數englishHello指向的函式，並帶入字串Simon、Duke。</li>
+<li>呼叫執行變數spanishHello指向的函式，並帶入字串Simon、Duke。</li>
+</ol>
+<p>在2、3步驟，變數englishHello和變數englishHello指向的函式內容，都是：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">firstname , lastname</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(language === <span class="string">'en'</span>)&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">'Hello '</span> + firstname + <span class="string">' '</span> + lastname);</span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span>(language === <span class="string">'es'</span>)&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">'Hola '</span> + firstname + <span class="string">' '</span> + lastname);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>由於makeHello函式的執行環境分別創造、結束兩次，現在變數englishHello和變數spanishHello指向的函式其實存在不同的記憶體位置(它們仍然是<code>by reference</code>)。</p>
+<p>現在呼叫執行<code>englishHello()</code>，可以得到英文的問好；呼叫執行<code>spanishHello()</code>，可以得到西班牙文的問好，需帶入的參數不用理<code>en</code>、<code>es</code>而減少至兩個了。</p>
+<p>藉由此方法與閉包的特性，我們可以創造新函式，用閉包設定函式內的預設參數，來設定、優化重載函式的效果。</p>
+<hr>
+<blockquote>
+<p>閉包與回呼</p>
+</blockquote>
+<p>我們常用的setTimeout，既是<strong>非同步</strong>，也用到了 <strong>函式表示式</strong>和 <strong>閉包</strong>的特性。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHi</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> hi = <span class="string">'你好'</span>;</span><br><span class="line"></span><br><span class="line">	setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(hi);</span><br><span class="line">	&#125;, <span class="number">3000</span>);</span><br><span class="line">&#125;</span><br><span class="line">sayHi();</span><br></pre></td></tr></table></figure></p>
+<p>結果是..3秒後顯示出<br><img src="https://i.imgur.com/i2LNcQu.png" alt=""></p>
+<p><code>setTimeout()</code>這個方法，接受我們傳入兩個參數(匿名函式、3000)，這個被傳入的函式就是 <strong>函式表示式</strong>(因為 <strong>一級函式</strong>的特性，可以把函式被當成值傳來傳去)，而關於非同步事件則可以參考這天<a href="https://ithelp.ithome.com.tw/articles/10191094" target="_blank" rel="noopener">筆記</a></p>
+<p>呼叫執行sayHi函式，setTimeout註冊事件，3秒後執行傳給setTimeout當參數的匿名函式，印出變數hi的值你好。<br>但3秒後sayHi函式的執行環境早就結束了，這個hi變數理應隨著sayHi執行環境結束而從記憶體清除，只是因為 <strong>閉包</strong>的特性，hi仍存在記憶體，所以才可以正常顯示出來。</p>
+<blockquote>
+<p>回乎函式<br>當我們呼叫、使用了一個函式，可以當成「call」一個函式，當這個函式執行到一定程度，在裏頭呼叫「call」另一個函式，這個被叫來的函式就是<code>callback function</code><strong>回乎函式</strong>。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tellMeWhenDone</span>(<span class="params">callback</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'已完成!'</span>);</span><br><span class="line"></span><br><span class="line">	callback();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">tellMeWhenDone(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'全部完成囉!'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>設定一個函式陳述句tellMeWhenDone，若執行時傳入函式當參數給它，在<code>console.log(&#39;已完成!&#39;);</code>這段程式碼執行完畢，它就會呼叫執行這個被傳入的函式，回應tellMeWhenDone呼叫的函式就是回乎函式。<br>結果是<br><img src="https://i.imgur.com/8yNZ38n.png" alt="">
+　
+　
+　
+　</p>
+<h2 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h2><p>原來setTimeout有利用到閉包的特性，之前只知道它是非同步、需要傳入函式表示式，但還沒有深入去思考它閉包的關聯。今天的筆記內容可以參照Udemy課程：<a href="https://www.udemy.com/javascriptjs/" target="_blank" rel="noopener">JavaScript 全攻略：克服JS的奇怪部分</a>4-48、4-49</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/simonallenblog/tags/網頁前端/" rel="tag"># 網頁前端</a>
+          
+            <a href="/simonallenblog/tags/IT鐵人賽/" rel="tag"># IT鐵人賽</a>
+          
+            <a href="/simonallenblog/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/simonallenblog/tags/學習筆記/" rel="tag"># 學習筆記</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/simonallenblog/2018/07/29/2018ITMAN/2018ITMAN-JS-Day20/" rel="next" title="克服JS奇怪的部分：Day20 立即呼叫的函式表示式(IIFE)">
+                <i class="fa fa-chevron-left"></i> 克服JS奇怪的部分：Day20 立即呼叫的函式表示式(IIFE)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/simonallenblog/2018/07/29/2018ITMAN/2018ITMAN-JS-Day24/" rel="prev" title="克服JS奇怪的部分：Day24 函數程式設計">
+                克服JS奇怪的部分：Day24 函數程式設計 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/simonallenblog/images/isMe.jpg"
+                alt="Simon Allen" />
+            
+              <p class="site-author-name" itemprop="name">Simon Allen</p>
+              <p class="site-description motion-element" itemprop="description">為信仰的事物奮鬥不懈</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/simonallenblog/archives/">
+              
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/simonallenblog/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分類</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/simonallenblog/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">標籤</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/allen8101070/" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:allen8101070@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://codepen.io/SimonAllen/" target="_blank" title="Codepen">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Codepen</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/" target="_blank" title="Facebook">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>Facebook</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#小結"><span class="nav-number">1.</span> <span class="nav-text">小結</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Simon Allen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/simonallenblog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/simonallenblog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/simonallenblog/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/simonallenblog/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/simonallenblog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/simonallenblog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/simonallenblog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

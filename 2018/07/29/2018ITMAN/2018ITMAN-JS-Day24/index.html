@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="zh-tw">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/simonallenblog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/simonallenblog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/simonallenblog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/simonallenblog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/simonallenblog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/simonallenblog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/simonallenblog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="網頁前端,IT鐵人賽,JavaScript,學習筆記," />
+
+
+
+
+
+
+
+
+
+
+<meta name="keywords" content="網頁前端,IT鐵人賽,JavaScript,學習筆記">
+<meta property="og:type" content="article">
+<meta property="og:title" content="克服JS奇怪的部分：Day24 函數程式設計">
+<meta property="og:url" content="https://nightwing975.github.io/2018/07/29/2018ITMAN/2018ITMAN-JS-Day24/index.html">
+<meta property="og:site_name" content="前端百工">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://3.bp.blogspot.com/-RnJNWoqX6t4/W1wauL9B0DI/AAAAAAAAIb4/O8Lbu4xlYawH4zjrj7mLrCiB-on1SE15QCLcBGAs/s1600/2018ITMANJS24.png">
+<meta property="og:image" content="https://i.imgur.com/TgipMci.png">
+<meta property="og:image" content="https://i.imgur.com/hL58QSp.png">
+<meta property="og:image" content="https://i.imgur.com/bAKhRZp.png">
+<meta property="og:image" content="https://i.imgur.com/B5vP338.png">
+<meta property="og:image" content="https://i.imgur.com/d98P44y.png">
+<meta property="og:image" content="https://i.imgur.com/MLzhgvo.png">
+<meta property="og:image" content="https://i.imgur.com/gFYCKfZ.png">
+<meta property="og:image" content="https://i.imgur.com/SUq1GHG.png">
+<meta property="og:image" content="https://i.imgur.com/rEafJTo.png">
+<meta property="og:image" content="https://i.imgur.com/JT3QLyo.png">
+<meta property="og:updated_time" content="2018-07-30T07:07:36.273Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="克服JS奇怪的部分：Day24 函數程式設計">
+<meta name="twitter:image" content="https://3.bp.blogspot.com/-RnJNWoqX6t4/W1wauL9B0DI/AAAAAAAAIb4/O8Lbu4xlYawH4zjrj7mLrCiB-on1SE15QCLcBGAs/s1600/2018ITMANJS24.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/simonallenblog/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://nightwing975.github.io/2018/07/29/2018ITMAN/2018ITMAN-JS-Day24/"/>
+
+
+
+
+
+  <title>克服JS奇怪的部分：Day24 函數程式設計 | 前端百工</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-123034328-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/simonallenblog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">前端百工</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">回憶過去、展望未來</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/simonallenblog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/simonallenblog/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/simonallenblog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/simonallenblog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/simonallenblog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nightwing975.github.io/simonallenblog/2018/07/29/2018ITMAN/2018ITMAN-JS-Day24/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Simon Allen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/simonallenblog/images/isMe.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端百工">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">克服JS奇怪的部分：Day24 函數程式設計</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2018-07-29T15:07:03+08:00">
+                2018-07-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/simonallenblog/categories/2018-IT鐵人賽/" itemprop="url" rel="index">
+                    <span itemprop="name">2018 IT鐵人賽</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://3.bp.blogspot.com/-RnJNWoqX6t4/W1wauL9B0DI/AAAAAAAAIb4/O8Lbu4xlYawH4zjrj7mLrCiB-on1SE15QCLcBGAs/s1600/2018ITMANJS24.png" alt=""><br><a id="more"></a></p>
+<blockquote>
+<p>此為筆者 2018 IT鐵人賽 筆記備份：<a href="https://ithelp.ithome.com.tw/articles/10194133" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10194133</a></p>
+</blockquote>
+<hr>
+<p>今天來看函數程式設計的兩節影片<br>(udemy這系列影片稱呼Function為 <strong>函數</strong>，但我個人比較習慣稱呼 <strong>函式</strong>)</p>
+<p>函數程式設計課程不可能在一兩節影片就講完，作者解釋他只是希望在這系列課程引入這個概念，以簡短影片讓人先體會它的威力。</p>
+<p>先來看看以下程式碼</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">var</span> arr2 = [];</span><br></pre></td></tr></table></figure>
+<p>現在有陣列arr1、arr2，我們想要複製arr1陣列的內容給arr2，並讓arr2陣列的值變arr1的2倍。<br>一般接續內容可能這樣寫：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i &lt; arr1.length; i++)&#123;</span><br><span class="line"></span><br><span class="line">	arr2.push(arr1[i] * <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(arr2);</span><br></pre></td></tr></table></figure></p>
+<p>結果是<br><img src="https://i.imgur.com/TgipMci.png" alt=""></p>
+<p>因為JS具有<code>一級函式</code>的特性，我們可以將程式步驟拆成一個個函式，透過函式來讓程式碼更有結構性。</p>
+<p>改成這樣<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mapForEach</span>(<span class="params">arr, fn</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> newArr = [];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i &lt; arr.length; i++)&#123;</span><br><span class="line">		newArr.push(</span><br><span class="line">			fn(arr[i])</span><br><span class="line">		)</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">return</span> newArr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arr2 = mapForEach(arr1, <span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> item * <span class="number">2</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(arr2);</span><br></pre></td></tr></table></figure></p>
+<p><strong>說明</strong><br>將建立arr1以外的新陣列程式碼，改在mapForEach函式裏頭處理，然後用變數arr2指向呼叫mapForEach函式後的的回傳值。</p>
+<p>呼叫mapForEach函式時帶入兩個參數，一是參考對象陣列，二是匿名函式，告訴mapForEach函式要處理什麼，這裡告訴mapForEach要將陣列參數乘與二並回傳。</p>
+<p>結果是<br><img src="https://i.imgur.com/hL58QSp.png" alt=""></p>
+<p>這種做法比原本的方式複雜，優點在哪？<br>若我們突然需要比對陣列的值(例如是否有值大於2)，就可以接續程式碼很快地新增內容<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr3 = mapForEach(arr1, <span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> item &gt; <span class="number">2</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(arr3);</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/bAKhRZp.png" alt=""></p>
+<p>也就是說，利用獨立出mapForEach函式這種寫法，我們可以更方便的對陣列做各種運算。<br>我們也可以用bind()來修改比較是否超過2這個函式，這次將函式修改得更具彈性。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> checkPastLimit = <span class="function"><span class="keyword">function</span>(<span class="params">limiter, item</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> item &gt; limiter;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>建立變數指向checkPastLimit指向一個匿名函式，檢查傳入的item參數是否有超過傳入limiter參數。<br>接著<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr4 = mapForEach(arr1, checkPastLimit.bind(<span class="keyword">this</span>, <span class="number">2</span>));</span><br><span class="line"><span class="built_in">console</span>.log(arr4);</span><br></pre></td></tr></table></figure></p>
+<p>建立變數arr4並指向呼叫mapForEach後的回傳值，這裡一樣帶入arr1當參數，另一個參數帶入checkPastLimit，這裡用bind並不是要修改this，而是為了用<code>bind</code>的特性預設參數，來達成function currying的目的，關於<code>bind</code>可以看<a href="https://ithelp.ithome.com.tw/articles/10193895" target="_blank" rel="noopener">昨天的筆記</a>。</p>
+<p>結果是<br><img src="https://i.imgur.com/B5vP338.png" alt=""></p>
+<p>那有沒有更簡潔的方法，有！<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> checkPastLimitSimplified = <span class="function"><span class="keyword">function</span>(<span class="params">limiter</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">limiter, item</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> item &gt; limiter;</span><br><span class="line">	&#125;.bind(<span class="keyword">this</span>, limiter);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arr5 = mapForEach(arr1, checkPastLimitSimplified(<span class="number">2</span>));</span><br><span class="line"><span class="built_in">console</span>.log(arr5);</span><br></pre></td></tr></table></figure></p>
+<p><strong>說明</strong><br>建立變數checkPastLimitSimplified指向一個匿名函式，這個函式可以帶入參數limiter，若是執行它會回傳這個匿名函式<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">limiter, item</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> item &gt; limiter;</span><br><span class="line">&#125;.bind(<span class="keyword">this</span>, limiter);</span><br></pre></td></tr></table></figure></p>
+<p>這個被回傳的匿名函式，可以再帶入另一個參數limiter和item，然後回傳item參數是否大於limiter參數的布林值，我們用bind來預設一個參數limiter。</p>
+<p>現在建立變數arr5，並指向呼叫mapForEach函式的回傳值，帶入arr1陣列與呼叫<code>checkPastLimitSimplified(2)</code>的回傳值。</p>
+<p>結果是<br><img src="https://i.imgur.com/d98P44y.png" alt=""></p>
+<p>基本上就是利用閉包特性，<code>return</code>再<code>return</code>，但太簡潔的話，易讀性就不一定好了，這裡只是做為一個範例。</p>
+<p>到這邊只用了幾行程式碼，就能快速創建不一樣的陣列，而且沒有功能重複的程式碼，<br>作者認為函數程式設計，一開始很難，但只要習慣分割程式到函式，讓函式互傳這種寫法，不僅程式碼簡潔，開發時速度也會快很多。</p>
+<hr>
+<p>接下來的影片，作者提到了兩個函式庫：</p>
+<blockquote>
+<p><a href="http://underscorejs.org/" target="_blank" rel="noopener">underscore.js</a></p>
+</blockquote>
+<p><img src="https://i.imgur.com/MLzhgvo.png" alt=""></p>
+<blockquote>
+<p><a href="https://lodash.com/" target="_blank" rel="noopener">lodash.js</a></p>
+</blockquote>
+<p><img src="https://i.imgur.com/gFYCKfZ.png" alt=""></p>
+<p>他們都用到了函數程式設計的概念，並且語法簡潔、速度快，影片中很推崇。<br>作者推薦除了使用外，也可以下載js原始碼(開發者版本)來研究好的程式碼是怎麼撰寫、思考的。</p>
+<p>接著的範例需要下載<a href="http://underscorejs.org/" target="_blank" rel="noopener">underscore.js</a>才能繼續，在網頁引入<a href="http://underscorejs.org/" target="_blank" rel="noopener">underscore.js</a>函式庫後，繼續程式碼的內容。</p>
+<p><img src="https://i.imgur.com/SUq1GHG.png" alt=""></p>
+<p>來看看以下程式碼<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr6 = _.map(arr1, <span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> item * <span class="number">3</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(arr6);</span><br></pre></td></tr></table></figure></p>
+<p><code>_.map()</code>是underscore函式庫定義的函式，功能類似今天筆記的mapForEach函式<br>第一個參數一樣帶入arr1，結果是</p>
+<p><img src="https://i.imgur.com/rEafJTo.png" alt=""></p>
+<p>再看看以下程式碼<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr7 = _.filter([<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>], <span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> item % <span class="number">2</span> === <span class="number">0</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(arr7);</span><br></pre></td></tr></table></figure></p>
+<p><code>_.filter</code>這個函式可以幫我們篩選陣列的值，帶入陣列<code>[2,3,4,5,6,7]</code>作為filter函式第一個參數，然後第二個參數函式，內容是回傳第一個參數<code>[2,3,4,5,6,7]</code>個別能夠被2整除的值。</p>
+<p>結果是<br><img src="https://i.imgur.com/JT3QLyo.png" alt="">
+　
+　
+　
+　
+　</p>
+<h2 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h2><p>今天影片這樣看下來，使用函數程式設計的優點有</p>
+<ul>
+<li><strong>簡潔</strong></li>
+<li><strong>速度快</strong></li>
+<li><strong>維護性好</strong></li>
+<li><strong>可重複利用</strong></li>
+</ul>
+<p>雖然內容好像和我還有點距離，但的確也是一個往前邁進的目標，到這邊課程第4章節總算結束了，明天進入第5章節：<strong>javaScript的物件導向與原型繼承</strong>。</p>
+<p>今天的筆記內容可以參照Udemy課程：<a href="https://www.udemy.com/javascriptjs/" target="_blank" rel="noopener">JavaScript 全攻略：克服JS的奇怪部分</a>4-51、4-51</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/simonallenblog/tags/網頁前端/" rel="tag"># 網頁前端</a>
+          
+            <a href="/simonallenblog/tags/IT鐵人賽/" rel="tag"># IT鐵人賽</a>
+          
+            <a href="/simonallenblog/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/simonallenblog/tags/學習筆記/" rel="tag"># 學習筆記</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/simonallenblog/2018/07/29/2018ITMAN/2018ITMAN-JS-Day22/" rel="next" title="克服JS奇怪的部分：Day22 Function Factories、閉包與回呼">
+                <i class="fa fa-chevron-left"></i> 克服JS奇怪的部分：Day22 Function Factories、閉包與回呼
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/simonallenblog/2018/07/29/2018ITMAN/2018ITMAN-JS-Day23/" rel="prev" title="克服JS奇怪的部分：Day23 函式內建方法：bind()、call()與apply()">
+                克服JS奇怪的部分：Day23 函式內建方法：bind()、call()與apply() <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/simonallenblog/images/isMe.jpg"
+                alt="Simon Allen" />
+            
+              <p class="site-author-name" itemprop="name">Simon Allen</p>
+              <p class="site-description motion-element" itemprop="description">為信仰的事物奮鬥不懈</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/simonallenblog/archives/">
+              
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/simonallenblog/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分類</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/simonallenblog/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">標籤</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/allen8101070/" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:allen8101070@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://codepen.io/SimonAllen/" target="_blank" title="Codepen">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Codepen</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/" target="_blank" title="Facebook">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>Facebook</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#小結"><span class="nav-number">1.</span> <span class="nav-text">小結</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Simon Allen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/simonallenblog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/simonallenblog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/simonallenblog/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/simonallenblog/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/simonallenblog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/simonallenblog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/simonallenblog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
