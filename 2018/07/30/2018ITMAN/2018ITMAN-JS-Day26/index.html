@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="zh-tw">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/simonallenblog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/simonallenblog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/simonallenblog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/simonallenblog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/simonallenblog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/simonallenblog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/simonallenblog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="網頁前端,IT鐵人賽,JavaScript,學習筆記," />
+
+
+
+
+
+
+
+
+
+
+<meta name="keywords" content="網頁前端,IT鐵人賽,JavaScript,學習筆記">
+<meta property="og:type" content="article">
+<meta property="og:title" content="克服JS奇怪的部分：Day26 物件型別、Reflection and Extend">
+<meta property="og:url" content="https://nightwing975.github.io/2018/07/30/2018ITMAN/2018ITMAN-JS-Day26/index.html">
+<meta property="og:site_name" content="前端百工">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://4.bp.blogspot.com/-KSia1FSfio8/W1wauunn5OI/AAAAAAAAIcA/vUN5w-sc1NsLzX5oN5bFmnaAFKV3smQkgCLcBGAs/s1600/2018ITMANJS26.png">
+<meta property="og:image" content="https://i.imgur.com/75erUD1.png">
+<meta property="og:image" content="https://i.imgur.com/Zr5sclg.png">
+<meta property="og:image" content="https://i.imgur.com/lYcwXIi.png">
+<meta property="og:image" content="https://i.imgur.com/EsSHdVJ.png">
+<meta property="og:image" content="https://i.imgur.com/360tDPg.png">
+<meta property="og:image" content="https://i.imgur.com/bHBXnY6.png">
+<meta property="og:image" content="https://i.imgur.com/wjpESMn.png">
+<meta property="og:image" content="https://i.imgur.com/Hm9SW3O.png">
+<meta property="og:image" content="https://i.imgur.com/i5fyPJE.png">
+<meta property="og:image" content="https://i.imgur.com/qCrq7En.png">
+<meta property="og:image" content="https://i.imgur.com/ZjcemN7.png">
+<meta property="og:image" content="https://i.imgur.com/BlxIrDS.png">
+<meta property="og:image" content="https://i.imgur.com/T6Dral8.png">
+<meta property="og:image" content="https://i.imgur.com/yoh525m.png">
+<meta property="og:image" content="https://i.imgur.com/ng5BD1B.png">
+<meta property="og:image" content="https://i.imgur.com/bZbmMD3.png">
+<meta property="og:image" content="https://i.imgur.com/iYLVgXh.png">
+<meta property="og:image" content="https://i.imgur.com/MBIaD0l.png">
+<meta property="og:updated_time" content="2018-07-30T08:30:07.422Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="克服JS奇怪的部分：Day26 物件型別、Reflection and Extend">
+<meta name="twitter:image" content="https://4.bp.blogspot.com/-KSia1FSfio8/W1wauunn5OI/AAAAAAAAIcA/vUN5w-sc1NsLzX5oN5bFmnaAFKV3smQkgCLcBGAs/s1600/2018ITMANJS26.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/simonallenblog/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://nightwing975.github.io/2018/07/30/2018ITMAN/2018ITMAN-JS-Day26/"/>
+
+
+
+
+
+  <title>克服JS奇怪的部分：Day26 物件型別、Reflection and Extend | 前端百工</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-123034328-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/simonallenblog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">前端百工</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">回憶過去、展望未來</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/simonallenblog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/simonallenblog/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/simonallenblog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/simonallenblog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/simonallenblog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://nightwing975.github.io/simonallenblog/2018/07/30/2018ITMAN/2018ITMAN-JS-Day26/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Simon Allen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/simonallenblog/images/isMe.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端百工">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">克服JS奇怪的部分：Day26 物件型別、Reflection and Extend</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2018-07-30T15:12:01+08:00">
+                2018-07-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/simonallenblog/categories/2018-IT鐵人賽/" itemprop="url" rel="index">
+                    <span itemprop="name">2018 IT鐵人賽</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://4.bp.blogspot.com/-KSia1FSfio8/W1wauunn5OI/AAAAAAAAIcA/vUN5w-sc1NsLzX5oN5bFmnaAFKV3smQkgCLcBGAs/s1600/2018ITMANJS26.png" alt=""><br><a id="more"></a></p>
+<blockquote>
+<p>此為筆者 2018 IT鐵人賽 筆記備份：<a href="https://ithelp.ithome.com.tw/articles/10194568" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10194568</a></p>
+</blockquote>
+<hr>
+<p>今天來看第5章節後半兩部影片</p>
+<p>JavaScript是物件導向語言，基本上所有的東西可以分成兩大類：<code>Primitive Types</code>和<code>Object Type</code></p>
+<blockquote>
+<p>Primitive Types 基本型別</p>
+</blockquote>
+<p>關於基本型別Primitive Types，可以看第7天的<a href="https://ithelp.ithome.com.tw/articles/10191195" target="_blank" rel="noopener">筆記</a>介紹</p>
+<blockquote>
+<p>Object Type 物件型別</p>
+</blockquote>
+<p>哪些東西是物件型別呢？<br><strong>JavaScript除了Primitive Types以外的東西，全都是物件型別！</strong></p>
+<p>來看看程式碼，這次直接在Chrome瀏覽器console輸入</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> b = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> c = [];</span><br></pre></td></tr></table></figure>
+<p>建立空的物件、函式、陣列<br><img src="https://i.imgur.com/75erUD1.png" alt=""></p>
+<p>直接輸入<code>a.__proto__</code>看看有什麼？<br><img src="https://i.imgur.com/Zr5sclg.png" alt=""><br>可以看到是一個物件，並且有很多屬性，若我們輸入<code>a.__proto__.</code>，就會跳出a物件原型可存取的屬性、方法。<br>　<br>若是a物件原型的原型會是什麼？輸入<code>a.__proto__.__proto__</code><br><img src="https://i.imgur.com/lYcwXIi.png" alt=""><br>可以看到原型鏈終點，也就是<code>null</code>。<br>　<br>接著看看函式，直接輸入<code>b.__proto__</code>看看有什麼？<br><img src="https://i.imgur.com/EsSHdVJ.png" alt=""><br>是一個函式，若我們輸入<code>b.__proto__.</code>就會跳出b函式原型可存取的屬性、方法。<br>　<br>若是b函式原型的原型會是什麼？輸入<code>b.__proto__.__proto__</code><br><img src="https://i.imgur.com/360tDPg.png" alt=""><br>可以看到是是一個物件，並且有很多屬性，若我們再輸入<code>b.__proto__.__proto__.__proto__</code>，也就是去看函式b原型的原型的原型：<br><img src="https://i.imgur.com/bHBXnY6.png" alt=""><br>可以看到原型鏈終點，也就是<code>null</code>。<br>　<br>若是陣列呢？直接輸入<code>c.__proto__</code>看看有什麼？<br><img src="https://i.imgur.com/wjpESMn.png" alt=""><br>一樣也是一個物件，並且有很多屬性，若我們輸入<code>c.__proto__.</code>，就會跳出c陣列原型可存取的屬性、方法。<br>　<br>若是c陣列原型的原型會是什麼？輸入<code>c.__proto__.__proto__</code><br><img src="https://i.imgur.com/Hm9SW3O.png" alt=""><br>可以看到是是一個物件，並且有很多屬性，若我們再輸入<code>c.__proto__.__proto__.__proto__</code>，也就是去看陣列c原型的原型的原型：<br><img src="https://i.imgur.com/i5fyPJE.png" alt=""><br>可以看到原型鏈終點，也就是<code>null</code>。</p>
+<p>這樣看下來可以知道：</p>
+<blockquote>
+<p>JS物件的原型仍會是物件，而原型鏈的終點，就是<code>null</code>。</p>
+</blockquote>
+<hr>
+<p>接著來看看 <strong>Reflection and Extend</strong>的介紹</p>
+<blockquote>
+<p>Reflection </p>
+</blockquote>
+<p>一個物件列出自己的屬性，然後改變自己的屬性和方法，我們可以藉Reflection，實現<code>extend</code>(擴展、繼承)這個模式來幫我們達成目的。</p>
+<p>來看看程式碼<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> batman = &#123;</span><br><span class="line">  firstname: <span class="string">'Bruce'</span>,</span><br><span class="line">  lastname: <span class="string">'Wayne'</span>,</span><br><span class="line">  getFullName: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.firstname + <span class="string">' '</span> + <span class="keyword">this</span>.lastname;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> superman = &#123;</span><br><span class="line">  firstname: <span class="string">'Clark'</span>,</span><br><span class="line">  lastname: <span class="string">'Kent'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">superman.__proto__ = batman;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> prop <span class="keyword">in</span> superman) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(prop + <span class="string">':'</span> + superman[prop])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>這裡用了Forin語法，Forin可以將目標內的東西全都遍歷、loop個一輪，詳細用法這裡不贅述，而現在要把superman每個屬性(值)都取出來，注意<code>superman[prop]</code>的<code>[]</code>不是陣列，而是可以存取物件屬性的<code>計算取用成員運算子</code>運算子，詳情可看之前的<a href="https://ithelp.ithome.com.tw/articles/10191723" target="_blank" rel="noopener">筆記</a>。</p>
+<p>執行結果<br><img src="https://i.imgur.com/qCrq7En.png" alt=""><br>superman其實沒有getFullName這個方法，因為superman原型batman有，Forin還是順著原型鏈把其他屬性都取出來了。</p>
+<p>我們可以用每個物件都有的內建方法hasOwnProperty來幫助我們篩選，將Forin程式碼改成這樣<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> prop <span class="keyword">in</span> superman) &#123;</span><br><span class="line">    <span class="keyword">if</span>(superman.hasOwnProperty(prop))&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(prop + <span class="string">':'</span> + superman[prop])</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>hasOwnProperty可以檢查屬性是不是該物件本身的成員，若有非物件本身的屬性存在(包含物件原型的屬性)，就回傳false，因此這裡的if判斷，console.log只會印出superman本身有的屬性。<br>結果是<br><img src="https://i.imgur.com/ZjcemN7.png" alt=""><br>　<br>接下來內容須使用underscore.js，作者要以underscore.js的extend函式作為範例介紹，extend可以將其他物件的屬性、方法新增給我們的目標物件。</p>
+<blockquote>
+<p>當然我們知道ES6有新增extends，各種框架也有出現extends的蹤跡，推測作者錄製影片時，ES6還未正式定義好，畢竟克服JS的奇怪部分也上架很久了。</p>
+</blockquote>
+<p>另外ES6的extends和underscore.js的extend並未衝突，因為差了一個s字母。</p>
+<p>首先引入underscore.js(開發者版本)<br><img src="https://i.imgur.com/BlxIrDS.png" alt=""></p>
+<p>接著我們可以去underscore.js的原始碼找_.extend</p>
+<p><img src="https://i.imgur.com/T6Dral8.png" alt=""></p>
+<p>再找createAssigner</p>
+<p><img src="https://i.imgur.com/yoh525m.png" alt=""><br>可以看到是怎麼寫的，基本上看到<code>return</code>，就知道這是利用閉包特性的寫法，現在知道underscore定義了自己的extend函式，來看看使用它會發生什麼事：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> superman = &#123;</span><br><span class="line">  firstname: <span class="string">'Clark'</span>,</span><br><span class="line">  lastname: <span class="string">'Kent'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Lois = &#123;</span><br><span class="line">  job: <span class="string">'reporter'</span>,</span><br><span class="line">  getFormalName: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.lastname + <span class="string">', '</span> + <span class="keyword">this</span>.firstname;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Jimmy = &#123;</span><br><span class="line">  getFirstName: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.firstname;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">_.extend(superman, Lois, Jimmy);</span><br></pre></td></tr></table></figure>
+<p>使用extend後，物件superman獲得了另外兩個物件Lois、Jimmy的屬性與方法，並不是說superman去原型鏈查找，而是利用extend函式，被新增了原本沒有的屬性，我們現在可以直接操作superman最初沒有的屬性了。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(superman);</span><br></pre></td></tr></table></figure></p>
+<p>結果是<br><img src="https://i.imgur.com/ng5BD1B.png" alt=""><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(superman.job);</span><br></pre></td></tr></table></figure></p>
+<p>結果是<br><img src="https://i.imgur.com/bZbmMD3.png" alt=""><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(superman.getFormalName());</span><br></pre></td></tr></table></figure></p>
+<p>結果是<br><img src="https://i.imgur.com/iYLVgXh.png" alt=""><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(superman.getFirstName());</span><br></pre></td></tr></table></figure></p>
+<p>結果是<br><img src="https://i.imgur.com/MBIaD0l.png" alt=""></p>
+<h2 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h2><p>extend(s)是JS物件導向很重要的觀念、語法，可以讓JS物件獲得其他物件的屬性和方法，尤其現在使用Vue、React開發，很常看到ES6的extends存在。<br>第5章節只有4個影片，到這裡就告一段落了，明天進入第6章節 <strong>建立物件</strong><br>今天的筆記內容可以參照Udemy課程：<a href="https://www.udemy.com/javascriptjs/" target="_blank" rel="noopener">JavaScript 全攻略：克服JS的奇怪部分</a>5-55、5-56</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/simonallenblog/tags/網頁前端/" rel="tag"># 網頁前端</a>
+          
+            <a href="/simonallenblog/tags/IT鐵人賽/" rel="tag"># IT鐵人賽</a>
+          
+            <a href="/simonallenblog/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/simonallenblog/tags/學習筆記/" rel="tag"># 學習筆記</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/simonallenblog/2018/07/29/2018ITMAN/2018ITMAN-JS-Day24/" rel="next" title="克服JS奇怪的部分：Day24 函數程式設計">
+                <i class="fa fa-chevron-left"></i> 克服JS奇怪的部分：Day24 函數程式設計
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/simonallenblog/2018/07/30/2018ITMAN/2018ITMAN-JS-Day27/" rel="prev" title="克服JS奇怪的部分：Day27 函式建構子與new">
+                克服JS奇怪的部分：Day27 函式建構子與new <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/simonallenblog/images/isMe.jpg"
+                alt="Simon Allen" />
+            
+              <p class="site-author-name" itemprop="name">Simon Allen</p>
+              <p class="site-description motion-element" itemprop="description">為信仰的事物奮鬥不懈</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/simonallenblog/archives/">
+              
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/simonallenblog/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分類</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/simonallenblog/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">標籤</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/allen8101070/" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:allen8101070@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://codepen.io/SimonAllen/" target="_blank" title="Codepen">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Codepen</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/" target="_blank" title="Facebook">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>Facebook</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#小結"><span class="nav-number">1.</span> <span class="nav-text">小結</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Simon Allen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/simonallenblog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/simonallenblog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/simonallenblog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/simonallenblog/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/simonallenblog/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/simonallenblog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/simonallenblog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/simonallenblog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

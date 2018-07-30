@@ -79,24 +79,24 @@
 
 <meta name="keywords" content="網頁前端,IT鐵人賽,JavaScript,學習筆記">
 <meta property="og:type" content="article">
-<meta property="og:title" content="克服JS奇怪的部分：Day10 存在與布林">
-<meta property="og:url" content="https://nightwing975.github.io/2018/07/29/2018ITMAN/2018ITMAN-JS-Day10/index.html">
+<meta property="og:title" content="克服JS奇怪的部分：Day28 內建的函式建構子">
+<meta property="og:url" content="https://nightwing975.github.io/2018/07/30/2018ITMAN/2018ITMAN-JS-Day28/index.html">
 <meta property="og:site_name" content="前端百工">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:image" content="https://2.bp.blogspot.com/-VuYF1DggcIg/W1waqRRZXFI/AAAAAAAAIbA/LmF6U5MZGQgPDdwJhfUjts-OZCVlCb2owCLcBGAs/s1600/2018ITMANJS10.png">
-<meta property="og:image" content="https://i.imgur.com/Cn4HY13.png">
-<meta property="og:image" content="https://i.imgur.com/O3bRPMO.png">
-<meta property="og:image" content="https://i.imgur.com/GhqrBeB.png">
-<meta property="og:image" content="https://i.imgur.com/rODsN9z.png">
-<meta property="og:image" content="https://i.imgur.com/TbRGHGv.png">
-<meta property="og:image" content="https://i.imgur.com/zxcShS3.png">
-<meta property="og:image" content="https://i.imgur.com/SaTFAx4.png">
-<meta property="og:image" content="https://i.imgur.com/1c9foIQ.png">
-<meta property="og:image" content="https://i.imgur.com/Wy6AJVR.png">
-<meta property="og:updated_time" content="2018-07-29T04:42:50.741Z">
+<meta property="og:image" content="https://2.bp.blogspot.com/-DNtPFxlrJWc/W1wavPtR7_I/AAAAAAAAIcI/Lm7-KcFAYUEQEMDtzBcEGd8UG9jh1TqzACLcBGAs/s1600/2018ITMANJS28.png">
+<meta property="og:image" content="https://i.imgur.com/jipX1Yk.png">
+<meta property="og:image" content="https://i.imgur.com/WO6zCm4.png">
+<meta property="og:image" content="https://i.imgur.com/fxyuW5X.png">
+<meta property="og:image" content="https://i.imgur.com/XPCAjlt.png">
+<meta property="og:image" content="https://i.imgur.com/KSZZBqB.png">
+<meta property="og:image" content="https://i.imgur.com/zM3bYmU.png">
+<meta property="og:image" content="https://i.imgur.com/haFmJ3e.png">
+<meta property="og:image" content="https://i.imgur.com/9i1mY9x.png">
+<meta property="og:image" content="https://i.imgur.com/XfhjKnU.png">
+<meta property="og:updated_time" content="2018-07-30T08:30:07.423Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="克服JS奇怪的部分：Day10 存在與布林">
-<meta name="twitter:image" content="https://2.bp.blogspot.com/-VuYF1DggcIg/W1waqRRZXFI/AAAAAAAAIbA/LmF6U5MZGQgPDdwJhfUjts-OZCVlCb2owCLcBGAs/s1600/2018ITMANJS10.png">
+<meta name="twitter:title" content="克服JS奇怪的部分：Day28 內建的函式建構子">
+<meta name="twitter:image" content="https://2.bp.blogspot.com/-DNtPFxlrJWc/W1wavPtR7_I/AAAAAAAAIcI/Lm7-KcFAYUEQEMDtzBcEGd8UG9jh1TqzACLcBGAs/s1600/2018ITMANJS28.png">
 
 
 
@@ -126,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="https://nightwing975.github.io/2018/07/29/2018ITMAN/2018ITMAN-JS-Day10/"/>
+  <link rel="canonical" href="https://nightwing975.github.io/2018/07/30/2018ITMAN/2018ITMAN-JS-Day28/"/>
 
 
 
 
 
-  <title>克服JS奇怪的部分：Day10 存在與布林 | 前端百工</title>
+  <title>克服JS奇怪的部分：Day28 內建的函式建構子 | 前端百工</title>
   
 
 
@@ -278,7 +278,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://nightwing975.github.io/simonallenblog/2018/07/29/2018ITMAN/2018ITMAN-JS-Day10/">
+    <link itemprop="mainEntityOfPage" href="https://nightwing975.github.io/simonallenblog/2018/07/30/2018ITMAN/2018ITMAN-JS-Day28/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Simon Allen">
@@ -295,7 +295,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">克服JS奇怪的部分：Day10 存在與布林</h1>
+          <h1 class="post-title" itemprop="name headline">克服JS奇怪的部分：Day28 內建的函式建構子</h1>
         
 
         <div class="post-meta">
@@ -307,8 +307,8 @@
               
                 <span class="post-meta-item-text">發表於</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2018-07-29T12:20:01+08:00">
-                2018-07-29
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2018-07-30T15:12:07+08:00">
+                2018-07-30
               </time>
             
 
@@ -367,34 +367,28 @@
       
 
       
-        <p><img src="https://2.bp.blogspot.com/-VuYF1DggcIg/W1waqRRZXFI/AAAAAAAAIbA/LmF6U5MZGQgPDdwJhfUjts-OZCVlCb2owCLcBGAs/s1600/2018ITMANJS10.png" alt=""><br><a id="more"></a></p>
+        <p><img src="https://2.bp.blogspot.com/-DNtPFxlrJWc/W1wavPtR7_I/AAAAAAAAIcI/Lm7-KcFAYUEQEMDtzBcEGd8UG9jh1TqzACLcBGAs/s1600/2018ITMANJS28.png" alt=""><br><a id="more"></a></p>
 <blockquote>
-<p>此為筆者 2018 IT鐵人賽 筆記備份：<a href="https://ithelp.ithome.com.tw/articles/10191498" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10191498</a></p>
+<p>此為筆者 2018 IT鐵人賽 筆記備份：<a href="https://ithelp.ithome.com.tw/articles/10195074" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10195074</a></p>
 </blockquote>
 <hr>
-<p>今天來看 <strong>存在</strong><code>existence</code>與 <strong>布林</strong><code>boolean</code>的關係</p>
-<p>由於JS常發生型別轉換這件事，開發者可以用<code>Boolean()</code>這個內件函式，來判斷型別轉為boolean的結果。<br><img src="https://i.imgur.com/Cn4HY13.png" alt=""><br><code>undefined</code>、<code>null</code>、<code>&quot;&quot;</code>這些代表沒有的值，都會被被型轉成false。<br>開發者可以利用此特性，用if()敘述來判斷是否成功取值。</p>
-<p>例如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(a)&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'這裡有東西'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/O3bRPMO.png" alt=""><br>結果什麼也沒發生，也沒有語法錯誤，發生了什麼事？</p>
-<p>我們都知道宣告變數，變數預設值是<code>undefined</code>。<br>而<code>if()</code>敘述句()內看的是布林值<code>true</code>或<code>false</code>，來決定敘述句<code>{}</code>裏頭的程式碼要不要執行。<br>故a在<code>if()</code>敘述句被型轉為<code>false</code>，所以這個條件判斷內的程式碼不執行。<br>如果是有值的狀況，例如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">'IT鐵人賽'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(a)&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'這裡有東西'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>結果會是？<br><img src="https://i.imgur.com/GhqrBeB.png" alt=""></p>
-<p>a有值(字串)，所以型轉為<code>true</code>，這就是開發者對js強制型轉的妙用之一，可以判斷這個值是否有存在，<strong>當有值存在時，若值不是代表「沒有、無、未定義」的值，就會被型轉成true</strong>。</p>
-<p>但如果賦值給a的值是數值<code>0</code>，那怎麼辦呢？<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(a)&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'這裡有東西'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>瀏覽器console結果是？<br><img src="https://i.imgur.com/rODsN9z.png" alt=""><br>沒東西</p>
-<p>雖然a有值(數值<code>0</code>)，但<code>0</code>被自動型轉為<code>false</code>，導致這個if條件判斷程式碼不成立，只是a確實有開發者賦予的值呀！</p>
-<p>這個時候可以這樣寫：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(a || a === <span class="number">0</span>)&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'這裡有東西'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>結果是：<br><img src="https://i.imgur.com/TbRGHGv.png" alt=""><br>來看看<code>if()</code>內發生了什麼事</p>
-<p><code>||</code>運算子可以想成中文的「或」的意思，<code>===</code>這個運算子的特性則是嚴格相等比較，前面<a href="https://ithelp.ithome.com.tw/articles/10191292" target="_blank" rel="noopener">這篇筆記</a>有說，運算子執行順序，先看 <strong>優先性</strong>，再看 <strong>相依性</strong>，<code>===</code>這個運算子優先性比<code>||</code>還高<br>(可參考MDN的<a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Operator_Precedence" target="_blank" rel="noopener">運算子優先等級</a>)</p>
-<p>所以<code>if()</code>內的執行順序，先從<code>a === 0</code>這段程式碼開始，把這段單獨抽出來看，結果是： <strong>true</strong> 成立<br><img src="https://i.imgur.com/zxcShS3.png" alt=""><br>再來看<code>a || true</code><br>a的值<code>0</code>在<code>if()</code>內被自動型轉為<code>false</code><br>所以變成是<code>false || true</code><br><code>||</code>或的意思，若有true就選擇true，假或真，選擇真。<br><img src="https://i.imgur.com/SaTFAx4.png" alt=""><br>是故<code>if()</code>內結果<code>true</code>，條件判斷成立，印出<code>這裡有東西</code></p>
-<p>這種寫法很少見嗎？不，很常見(我最近上班也有看到)<br>有的框架、函式庫、JS套件會用這種寫法，舉個例子，現在給變數a一個函式：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"某套件某功能的函式"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(a)&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"我有成功匯入某JS套件"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>結果是：<br><img src="https://i.imgur.com/1c9foIQ.png" alt=""></p>
-<p>用這種方式，能判斷的不是只有字串或數值，連<strong>函式</strong>也可以，當然<strong>物件</strong>也是可以的。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;<span class="attr">it30day</span>:<span class="string">'一天一筆記'</span>&#125;</span><br><span class="line"><span class="keyword">if</span>(a)&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"我有成功匯入某JS套件"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>結果是：<br><img src="https://i.imgur.com/Wy6AJVR.png" alt="">
+<p>今天來看看內建的函式建構子</p>
+<p>什麼是內建的函式建構子？<br>其實是將JS的內建的<code>Number()</code>、<code>String()</code>、<code>Date()</code>….等其他內建函式，與<code>new</code>函式建構子一起使用。</p>
+<p>來看看看程式碼，直接在Chrome瀏覽器console上操作。<br><img src="https://i.imgur.com/jipX1Yk.png" alt=""><br><code>Number()</code>是JS的內建函式之一，在程式碼Number的開頭前多了一個<code>new</code>建構子，根據<a href="https://ithelp.ithome.com.tw/articles/10194795" target="_blank" rel="noopener">昨天筆記</a>，我們知道<code>new</code>這個<code>function constructor</code><strong>函式建構子</strong>會創建新物件，並將後方函式內的<code>this</code>指向它，依照函式內的設定創造該新物件的屬性。</p>
+<p>現在變數a指向的東西，並不是 <strong>基本型別</strong><code>Primitive Types</code>，而是<strong>物件型別</strong><code>Object Type</code>，在這個物件裏頭，有一個基本型別數值3的存在。(別忘記物件是名稱與值配對的組合)</p>
+<p>所以a是物件，原型是Number，用<code>typeof</code>檢查a的型別：<br><img src="https://i.imgur.com/WO6zCm4.png" alt=""></p>
+<p>我們在console打<code>Number.prototype.</code>可以看到一些prototype的方法：<br><img src="https://i.imgur.com/fxyuW5X.png" alt=""><br>prototype不是用來取用函式自己的原型，而是用來取用<code>new</code>建構子創造出來的物件原型，<br>這代表我們可以對物件a做一些操作 例如：<br><img src="https://i.imgur.com/XPCAjlt.png" alt=""></p>
+<p>重點在於，我們可以透過prototype去取用方法、新增方法，來看看以下程式碼：<br><img src="https://i.imgur.com/KSZZBqB.png" alt=""><br>字串<code>&quot;Simon&quot;</code>後面用<code>.</code>運算子去呼叫方法<code>isLengthGreaterThan()</code>並帶入參數3，字串的原型被我們新增了isLengthGreaterThan方法，透過原型鏈的查找，我們可以讓字串使用我們定義的函式，這等於我們可以改造JS程式，添加一些自己的函式進原型中。</p>
+<p>那如果是數值呢？<br><img src="https://i.imgur.com/zM3bYmU.png" alt=""><br>報錯，因為JS動態轉型，字串有時候能被被轉成物件，數值卻沒辦法，我們需要用<code>new</code>來幫助我們建立物件才可以使用這個方法。<br><img src="https://i.imgur.com/haFmJ3e.png" alt=""></p>
+<p>雖然函式建構子非常自由，可以新增自行設定的方法到數值、字串、陣列上，但一般不建議建立函式方法到看起來像 <strong>基本型別</strong><code>Primitive Types</code>的物件上。</p>
+<p>透過new建立像 <strong>基本型別</strong><code>Primitive Types</code>的<strong>物件型別</strong><code>Object Types</code>，如今天講的字串、數值，可能導致我們開發時搞混，因而造成一些bug出現，畢竟<code>new</code>建立建立出來的是<strong>物件型別</strong><code>Object Types</code>，在瀏覽器console試驗看看就知道了：<br><img src="https://i.imgur.com/9i1mY9x.png" alt=""><br><code>c == d</code>，因為自動轉型的關西，回傳<code>true</code>。<br><code>c === d</code>，用三等號嚴格比較，連型別也一起比，c是數值d是物件，故回傳<code>false</code>。</p>
+<p>順帶一提，如果有用JS處理時間的需求，作者不建議使用JS內建的時間方法，他推薦使用JS函示庫<a href="https://momentjs.com/" target="_blank" rel="noopener">moment.js</a>，這可以幫助開發者迴避一些因建構子產生的問題。<br><img src="https://i.imgur.com/XfhjKnU.png" alt="">
+　
 　
 　
 　</p>
-<h2 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h2><p>某次使用JS套件(別人寫好的Plugin)時，看原文件發現這種寫法，當時的反應是欸欸~~這樣也可以喔！後來想一下、console確認可行就用了，現在在udemy看到這部影片，<strong>存在與布林</strong>，感覺真是心有戚戚焉。</p>
-<p>今天的筆記內容可以參照Udemy課程：<a href="https://www.udemy.com/javascriptjs/" target="_blank" rel="noopener">JavaScript 全攻略：克服JS 的奇怪部分</a>3-27</p>
+<h2 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h2><p>使用內建的函式建構子(JS內建函式 + new函式建構子)需要非常小心。<br>開發者往往覺得<code>new Number()</code>、<code>new String()</code>、<code>new Date()</code>…等寫法和<code>Number()</code>、<code>String()</code>、<code>Date()</code>的結果一樣：只是多了一個<code>new</code>建構子，一樣會建立新的 <strong>基本型別</strong><code>Primitive Types</code>，但只要使用<code>new</code>在函式前面，就會創建一個新的 <strong>物件</strong>(型別)<code>Object Types</code>出來，而我們往往不會意識到…自己操作的其實是物件。</p>
+<p>今天的筆記內容可以參照Udemy課程：<a href="https://www.udemy.com/javascriptjs/" target="_blank" rel="noopener">JavaScript 全攻略：克服JS的奇怪部分</a>5-60、5-61</p>
 
       
     </div>
@@ -431,8 +425,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/simonallenblog/2018/07/29/2018ITMAN/2018ITMAN-JS-Day09/" rel="next" title="克服JS奇怪的部分：Day09 強制型轉與比較運算子">
-                <i class="fa fa-chevron-left"></i> 克服JS奇怪的部分：Day09 強制型轉與比較運算子
+              <a href="/simonallenblog/2018/07/30/2018ITMAN/2018ITMAN-JS-Day27/" rel="next" title="克服JS奇怪的部分：Day27 函式建構子與new">
+                <i class="fa fa-chevron-left"></i> 克服JS奇怪的部分：Day27 函式建構子與new
               </a>
             
           </div>
@@ -441,8 +435,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/simonallenblog/2018/07/29/2018ITMAN/2018ITMAN-JS-Day11/" rel="prev" title="克服JS奇怪的部分：Day11 設定函式內的預設值">
-                克服JS奇怪的部分：Day11 設定函式內的預設值 <i class="fa fa-chevron-right"></i>
+              <a href="/simonallenblog/2018/07/30/2018ITMAN/2018ITMAN-JS-Day29/" rel="prev" title="克服JS奇怪的部分：Day29 Object.create與class">
+                克服JS奇怪的部分：Day29 Object.create與class <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
